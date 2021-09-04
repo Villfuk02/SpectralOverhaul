@@ -1,5 +1,3 @@
-SODA = {} -- Spectral Overhaul DAta
-
 -- ADD PATH GENERATORS
 require("data.globals.paths")
 

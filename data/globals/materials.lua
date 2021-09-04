@@ -3,10 +3,10 @@ SODA.MAT = {}
 SODA.MAT.all = {"black", "yellow", "green", "azure", "gray", "pink", "lime", "blue", "white", "purple", "orange", "red"}
 
 SODA.MAT.types = {
-    fuel = {black = true, yellow = true, green = true, ingots = false},
-    structure = {azure = true, gray = true, pink = true, ingots = true},
-    mechanisms = {lime = true, blue = true, white = true, ingots = true},
-    electronics = {purple = true, orange = true, red = true, ingots = true},
+    fuel = {list = {"black", "yellow", "green"}, black = 1, yellow = 2, green = 3, ingots = false},
+    structure = {list = {"azure", "gray", "pink"}, azure = 1, gray = 2, pink = 3, ingots = true},
+    mechanisms = {list = {"lime", "blue", "white"}, lime = 1, blue = 2, white = 3, ingots = true},
+    electronics = {list = {"purple", "orange", "red"}, purple = 1, orange = 2, red = 3, ingots = true},
 }
 
 SODA.MAT.black = {name = "empurite", type = "fuel", order = "a1", map_color = {30, 30, 30}, tint = {60, 60, 60}}
@@ -20,4 +20,4 @@ SODA.MAT.blue = {name = "phokium", type = "mechanisms", order = "c2", map_color 
 SODA.MAT.white = {name = "rheonite", type = "mechanisms", order = "c3", map_color = {225, 225, 225}, tint = {255, 255, 255}}
 SODA.MAT.purple = {name = "lampium", type = "electronics", order = "d1", map_color = {170, 30, 225}, tint = {200, 60, 255}}
 SODA.MAT.orange = {name = "kaumium", type = "electronics", order = "d2", map_color = {225, 110, 30}, tint = {255, 140, 60}}
-SODA.MAT.red = {name = "otheium", type = "electronics", order = "d3", map_color = {225, 30, 60}, tint = {255, 60, 60}} -- slightly pink to distinguish from biters
+SODA.MAT.red = {name = "otheium", type = "electronics", order = "d3", map_color = {225, 30, 80}, tint = {255, 60, 60}} -- slightly pink to distinguish from biters
