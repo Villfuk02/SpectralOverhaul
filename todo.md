@@ -1,7 +1,6 @@
 # TODO
 
 **lang engine**
-**icon engine**
 **miners**
 **material controller**
 **ore processing**

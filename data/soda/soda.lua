@@ -1,7 +1,7 @@
 SODA = {} -- Spectral Overhaul DAta
 
 -- INIT MATERIALS
-require("data.soda.materials")
+require "data.soda.materials"
 
 -- SAVE IRON-ORE PRESET SETTINGS
 SODA.autoplace_presets = {}

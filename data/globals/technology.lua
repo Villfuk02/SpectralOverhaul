@@ -1,12 +1,8 @@
-local function add(name, cost, prereqs, effects, icon, upgrade, max_level)
-    local tech = {type = "technology", name = name, icon_size = icon.size or 128, upgrade = upgrade, max_level = max_level, prerequisites = prereqs, unit = cost}
-    if icon.tint then
-        tech.icons = {{icon = SODA.path_icons(icon.folder or "technology", icon.name or name), icon_size = icon.size or 128, tint = icon.tint}}
-    elseif icon.vanilla then
-        tech.icon = "__base__/graphics/technology/" .. icon.vanilla .. ".png"
-    else
-        tech.icon = SODA.path_icons(icon.folder or "technology", icon.name or name)
-    end
+local icons = require "data.globals.icons"
+
+local function add(name, cost, prereqs, effects, icon_spec, upgrade, max_level)
+    local tech = {type = "technology", name = name, icon_size = icon.size or 256, upgrade = upgrade, max_level = max_level, prerequisites = prereqs, unit = cost}
+    tech = icons.add(tech, icon_spec.size or 256, SODA.path_icons(icon_spec.folders or "technology", icon_spec.name or name, icon_spec.vanilla), nil, icon_spec.tint)
 
     if effects then
         for key, value in pairs(effects) do

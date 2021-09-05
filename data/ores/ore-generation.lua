@@ -1,5 +1,5 @@
-local resource_autoplace = require("__core__/lualib/resource-autoplace")
-local noise = require("__core__/lualib/noise")
+local resource_autoplace = require "__core__/lualib/resource-autoplace"
+local noise = require "__core__/lualib/noise"
 
 local type_divisor = {fuel = 1, structure = 3, mechanisms = 9, electronics = 27}
 return function(name)

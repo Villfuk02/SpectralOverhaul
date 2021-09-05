@@ -1,7 +1,7 @@
-local particle = require("data.ores.ore-particles")
-require("data.ores.ore-generation")
-require("data.ores.ore-items")
-local autoplace = require("data.ores.ore-generation")
+local particle = require "data.ores.ore-particles"
+require "data.ores.ore-generation"
+require "data.ores.ore-items"
+local autoplace = require "data.ores.ore-generation"
 
 local stage_counts = {15000, 9500, 5500, 2900, 1300, 400, 150, 80}
 local walking_sound = {

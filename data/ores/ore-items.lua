@@ -1,20 +1,5 @@
-local item = require("data.globals.items")
-
-local function ore_item(name)
-    return item(
-               {
-            name = name .. "-ore",
-            order = "e-" .. SODA.MAT[name].order,
-            subgroup = "raw-resource",
-            icon_folders = "ores",
-            tinted_icon = "ore",
-            tint = SODA.MAT[name].tint,
-            pictures = 4,
-            icon_mipmaps = 4,
-        }
-           )
-end
+local item = require "data.globals.items"
 
 for _, name in pairs(SODA.MAT.all) do
-    data:extend({ore_item(name)})
+    data:extend({item(name .. "-ore", "e-" .. SODA.MAT[name].order, "raw-resource", nil, {folders = "ores", name = "ore", mipmaps = 4, tint = SODA.MAT[name].tint}, 4)})
 end

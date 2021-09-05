@@ -1,27 +1,25 @@
-return function(p)
-    local temp = {type = "item", name = p.name, order = p.order .. "[" .. p.name .. "]", stack_size = p.stack_size or 100, subgroup = p.subgroup}
+local icons = require "data.globals.icons"
 
-    if p.tinted_icon then
-        temp.icons = {{icon = SODA.path_icons(p.icon_folders, p.tinted_icon), icon_size = 64, icon_scale = 0.5, tint = p.tint}}
-        temp.icon_mipmaps = p.icon_mipmaps
-        temp.icon_size = 64
-    elseif p.icons then
-        temp.icons = p.icons
-    else
-        temp.icon = SODA.path_icons(p.icon_folders, p.name)
-        temp.icon_mipmaps = p.icon_mipmaps
-        temp.icon_size = 64
+return function(name, order, subgroup, stack_size, icon_spec, pictures)
+    if icon_spec == nil then
+        icon_spec = {}
     end
+    local temp = {type = "item", name = name, order = order .. "[" .. name .. "]", stack_size = stack_size or 100, subgroup = subgroup}
+    temp = icons.add(temp, 64, SODA.path_icons(icon_spec.folders, icon_spec.name or name, icon_spec.vanilla), icon_spec.mipmaps, icon_spec.tint, icon_spec.icons)
 
-    if p.pictures then
-        temp.pictures = {}
-        for i = 1, p.pictures, 1 do
-            if p.tinted_icon then
-                temp.pictures[i] = {filename = SODA.path_icons(p.icon_folders, p.tinted_icon .. (i == 1 and "" or "-" .. i - 1)), mipmap_count = p.icon_mipmaps, scale = 0.25, size = 64, tint = p.tint}
-            elseif p.icons then
-                error("Item with layers is expected to not have variations: " .. p.name)
-            else
-                temp.pictures[i] = {filename = SODA.path_icons(p.icon_folders, p.name .. (i == 1 and "" or "-" .. i - 1)), mipmap_count = p.icon_mipmaps, scale = 0.25, size = 64}
+    if pictures then
+        if icon_spec.icons then
+            error("Item with layers is expected to not have variations: " .. name)
+        else
+            temp.pictures = {}
+            for i = 1, pictures, 1 do
+                temp.pictures[i] = {
+                    filename = SODA.path_icons(icon_spec.folders, icon_spec.name or name .. (i == 1 and "" or "-" .. i - 1), icon_spec.vanilla),
+                    mipmap_count = icon_spec.mipmaps,
+                    scale = 0.25,
+                    size = 64,
+                    tint = icon_spec.tint,
+                }
             end
         end
     end

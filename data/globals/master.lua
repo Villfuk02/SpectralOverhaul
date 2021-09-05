@@ -1,5 +1,5 @@
 -- ADD PATH GENERATORS
-require("data.globals.paths")
+require "data.globals.paths"
 
 -- INIT ORES
-require("data.ores.ores")
+require "data.ores.ores"
