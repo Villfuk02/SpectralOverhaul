@@ -2,7 +2,7 @@ for key, _ in pairs(data.raw["resource"]) do
     data.raw["resource"][key] = nil
 end
 
-local blacklist_autoplace = {"stone", "coal", "crude-oil", "iron-ore", "copper-ore", "uranium-ore"}
+local blacklist_autoplace = {"stone", "coal", "iron-ore", "copper-ore", "uranium-ore"}
 
 for _, key in pairs(blacklist_autoplace) do
     data.raw["autoplace-control"][key] = nil

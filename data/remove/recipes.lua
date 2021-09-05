@@ -15,7 +15,12 @@ for b, _ in pairs(data.raw.module) do
 end
 
 for b, _ in pairs(data.raw.technology) do
-    data.raw.technology[b].effects = nil
+    if b == "construction-robotics" or b == "personal-roboport-equipment" or b == "exoskeleton-equipment" or b == "oil-processing" then
+        data.raw.technology[b].prerequisites = nil
+        data.raw.technology[b].effects = nil
+    else
+        data.raw.technology[b] = nil
+    end
 end
 
 for b, _ in pairs(data.raw["tips-and-tricks-item"]) do

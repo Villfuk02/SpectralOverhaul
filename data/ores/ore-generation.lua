@@ -13,7 +13,7 @@ return function(name)
                     "[item=" .. SODA.MAT.types[SODA.MAT[name].type].list[3] .. "-ore] ", {"item-name." .. SODA.MAT[name].type .. "-ores"},
                 },
                 richness = true,
-                order = "s-" .. SODA.MAT[name].order,
+                order = "a-" .. SODA.MAT[name].order,
                 category = "resource",
             },
         }
