@@ -15,3 +15,5 @@ tips and tricks
 mod metadata
 tech science prereqs
 remove relic techs (data.remove.recipes)
+hide unused items
+colorblindness

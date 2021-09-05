@@ -1,5 +1,4 @@
--- ADD PATH GENERATORS
-require "data.globals.paths"
-
--- INIT ORES
+-- ADD ORES
 require "data.ores.ores"
+-- ADD TECH
+require "data.tech.tech"

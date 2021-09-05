@@ -1,8 +1,9 @@
-local icons = require "data.globals.icons"
+SODA.tech = {}
+SODA.tech.pack_prefix = "science-pack-"
 
-local function add(name, cost, prereqs, effects, icon_spec, upgrade, max_level)
-    local tech = {type = "technology", name = name, icon_size = icon.size or 256, upgrade = upgrade, max_level = max_level, prerequisites = prereqs, unit = cost}
-    tech = icons.add(tech, icon_spec.size or 256, SODA.path_icons(icon_spec.folders or "technology", icon_spec.name or name, icon_spec.vanilla), nil, icon_spec.tint)
+function SODA.tech.add(name, cost, prereqs, effects, icon_spec, upgrade, max_level)
+    local tech = {type = "technology", name = name, upgrade = upgrade, max_level = max_level, prerequisites = prereqs, unit = cost}
+    tech = SODA.icons.add(tech, icon_spec.size or 256, SODA.path.icons((icon_spec.folders or "technology/") .. (icon_spec.name or name), icon_spec.vanilla), nil, icon_spec.tint)
 
     if effects then
         for key, value in pairs(effects) do
@@ -17,11 +18,11 @@ local function add(name, cost, prereqs, effects, icon_spec, upgrade, max_level)
 end
 
 local function two_type_packs(ingredients, k, prefix, type1, type2)
-    for _, a in pairs(SODA.MAT.types[type1].list) do
+    for _, a in pairs(SODA.mat.types[type1].list) do
         if k[a] then
-            for _, b in pairs(SODA.MAT.types[type2].list) do
+            for _, b in pairs(SODA.mat.types[type2].list) do
                 if k[b] then
-                    ingredients[prefix .. SODA.MAT[a].short .. SODA.MAT[b].short] = 1
+                    ingredients[prefix .. SODA.MATS[a].short .. SODA.MATS[b].short] = 1
                 end
             end
         end
@@ -29,11 +30,11 @@ local function two_type_packs(ingredients, k, prefix, type1, type2)
     return ingredients
 end
 
-local function cost_ingredients(tier, military, kind)
+function SODA.tech.generate_ingredients(tier, military, kind)
     local ingredients = {}
     local k = {}
-    for _, value in pairs(SODA.MAT.all) do
-        k[value] = string.find(kind, SODA.MAT[value].short)
+    for _, value in pairs(SODA.mat.list) do
+        k[value] = string.find(kind, SODA.MATS[value].short)
     end
 
     if tier >= 1 then
@@ -51,38 +52,24 @@ local function cost_ingredients(tier, military, kind)
 
     if tier >= 3 then
         for key, _ in pairs(k) do
-            ingredients["3" .. SODA.MAT[key].short] = 1
+            ingredients["3" .. SODA.MATS[key].short] = 1
         end
     end
 
     if tier >= 4 then
-        local r = {["4"] = 1}
-        for _, tv in pairs(SODA.MAT.types) do
-            local nr = {}
-            for _, ki in pairs(tv.list) do
-                if k[ki] then
-                    for key, _ in pairs(r) do
-                        nr[key .. SODA.MAT[ki].short] = 1
-                    end
-                end
-            end
-            r = nr
-        end
-        for key, _ in pairs(r) do
-            ingredients[key] = 1
-        end
+        ingredients["4"] = 1
     end
 
     if tier >= 5 then
         local r = {}
-        for t, tv in pairs(SODA.MAT.types) do
+        for t, tv in pairs(SODA.mat.types) do
             r[t] = {["5"] = 0}
             for _, ki in pairs(tv.list) do
                 local nr = {}
                 for key, v in pairs(r[t]) do
                     nr[key] = v
                     if k[ki] then
-                        nr[key .. SODA.MAT[ki].short] = v + 1
+                        nr[key .. SODA.MATS[ki].short] = v + 1
                     end
                 end
                 r[t] = nr
@@ -103,13 +90,13 @@ local function cost_ingredients(tier, military, kind)
 
     local ni = {}
     for key, value in pairs(ingredients) do
-        ni["science-pack-" .. key] = value
+        ni[SODA.tech.pack_prefix .. key] = value
     end
 
     return ni
 end
 
-local function cost(tier, military, kind, time, amt)
+function SODA.tech.generate_cost(tier, military, kind, time, amt)
     local cost = {}
     cost.time = time
     if type(amt) == "number" then
@@ -117,8 +104,6 @@ local function cost(tier, military, kind, time, amt)
     else
         cost.count_formula = amt
     end
-    cost.ingredients = cost_ingredients(tier, military, kind)
+    cost.ingredients = SODA.tech.generate_ingredients(tier, military, kind)
     return cost
 end
-
-return {add = add, cost = cost}
