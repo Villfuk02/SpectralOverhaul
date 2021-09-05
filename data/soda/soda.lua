@@ -1,5 +1,8 @@
 SODA = {} -- Spectral Overhaul DAta
 
+-- INIT MATERIALS
+require("data.soda.materials")
+
 -- SAVE IRON-ORE PRESET SETTINGS
 SODA.autoplace_presets = {}
 for k, preset in pairs(data.raw["map-gen-presets"]["default"]) do
@@ -8,8 +11,3 @@ for k, preset in pairs(data.raw["map-gen-presets"]["default"]) do
     end
 end
 
--- REMOVE THESE
-SODA.blacklist_autoplace = {"stone", "coal", "crude-oil", "iron-ore", "copper-ore", "uranium-ore"}
-
--- DO NOT REMOVE THESE
-SODA.item_whitelist = {"rocket-silo", "furnace", "burner-miner"}

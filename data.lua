@@ -1,5 +1,5 @@
 -- INIT SODA
-require("data.globals.soda")
+require("data.soda.soda")
 -- REMOVE VANILLA STUFF
 require("data.remove.remover")
 -- ADD STUFF

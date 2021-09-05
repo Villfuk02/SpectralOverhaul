@@ -1,18 +1,14 @@
 # TODO
 
-**ores**
-
-- graphix
-- generation
-
 **lang engine**
-**material controller**
-**tech**
-**analyzer**
 **miners**
+**material controller**
 **ore processing**
-**power gen**
-**production chain**
 **logistic machines**
+**production chain**
+**analyzer**
+**tech**
+**power gen**
 **REST OF THE FUCKING MOD**
 **combat**
+tips and tricks
