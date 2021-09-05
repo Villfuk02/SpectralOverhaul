@@ -1,5 +1,8 @@
 SODA = {} -- Spectral Overhaul DAta
 
+-- INIT CONSTANTS
+require "data.soda.constants"
+
 -- INIT MATERIALS
 require "data.soda.materials"
 

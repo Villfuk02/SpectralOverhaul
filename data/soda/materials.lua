@@ -1,11 +1,11 @@
 SODA.MATS = {}
 SODA.mat = {}
 
-SODA.mat.list = {"black", "yellow", "green", "azure", "gray", "pink", "lime", "blue", "white", "purple", "orange", "red"}
+SODA.mat.list = {"black", "yellow", "green", "azure", "silver", "pink", "lime", "blue", "white", "purple", "orange", "red"}
 
 SODA.mat.types = {
     fuel = {list = {"black", "yellow", "green"}, black = 1, yellow = 2, green = 3, ingots = false},
-    structure = {list = {"azure", "gray", "pink"}, azure = 1, gray = 2, pink = 3, ingots = true},
+    structure = {list = {"azure", "silver", "pink"}, azure = 1, silver = 2, pink = 3, ingots = true},
     mechanisms = {list = {"lime", "blue", "white"}, lime = 1, blue = 2, white = 3, ingots = true},
     electronics = {list = {"purple", "orange", "red"}, purple = 1, orange = 2, red = 3, ingots = true},
 }
@@ -14,7 +14,7 @@ SODA.MATS.black = {name = "kaerium", type = "fuel", order = "a1", map_color = {3
 SODA.MATS.yellow = {name = "empurite", type = "fuel", order = "a2", map_color = {225, 220, 90}, tint = {255, 250, 120}, short = "E"}
 SODA.MATS.green = {name = "hualite", type = "fuel", order = "a3", map_color = {30, 160, 30}, tint = {60, 190, 60}, short = "H"}
 SODA.MATS.azure = {name = "allasite", type = "structure", order = "b1", map_color = {75, 200, 225}, tint = {105, 230, 255}, short = "A"}
-SODA.MATS.gray = {name = "starium", type = "structure", order = "b2", map_color = {120, 125, 130}, tint = {130, 155, 160}, short = "S"}
+SODA.MATS.silver = {name = "starium", type = "structure", order = "b2", map_color = {130, 135, 140}, tint = {160, 165, 170}, short = "S"}
 SODA.MATS.pink = {name = "ionite", type = "structure", order = "b3", map_color = {240, 120, 200}, tint = {255, 135, 215}, short = "I"}
 SODA.MATS.lime = {name = "lamnium", type = "mechanisms", order = "c1", map_color = {130, 225, 30}, tint = {160, 255, 60}, short = "L"}
 SODA.MATS.blue = {name = "catarite", type = "mechanisms", order = "c2", map_color = {60, 30, 225}, tint = {90, 60, 255}, short = "C"}

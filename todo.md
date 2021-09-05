@@ -1,19 +1,28 @@
 # TODO
 
+set up pollution
 **lang engine**
+**analyzer**
 **miners**
 **material controller**
 **ore processing**
 **logistic machines**
 **production chain**
-**analyzer**
 **tech**
 **power gen**
 **REST OF THE FUCKING MOD**
+
+tech science prereqs
+
+## later
+
 **combat**
+
+## polish
+
+**balance**
 tips and tricks
 mod metadata
-tech science prereqs
 remove relic techs (data.remove.recipes)
 hide unused items
 colorblindness
