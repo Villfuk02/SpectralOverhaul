@@ -3,7 +3,7 @@ SODA.tech.pack_prefix = "science-pack-"
 
 function SODA.tech.add(name, cost, prereqs, effects, icon_spec, upgrade, max_level)
     local tech = {type = "technology", name = name, upgrade = upgrade, max_level = max_level, prerequisites = prereqs, unit = cost}
-    tech = SODA.icons.add(tech, icon_spec.size or 256, SODA.path.icons((icon_spec.folders or "technology/") .. (icon_spec.name or name), icon_spec.vanilla), nil, icon_spec.tint)
+    tech = SODA.icons.add(tech, icon_spec.size or 256, SODA.path.icons((icon_spec.folders or "technology") .. "/" .. (icon_spec.name or name), icon_spec.vanilla), nil, icon_spec.tint)
 
     if effects then
         for key, value in pairs(effects) do

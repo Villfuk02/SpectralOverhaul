@@ -13,12 +13,12 @@ SODA.constants.processing.productivity = {2 / 3, 1, 4 / 3, 3 / 2}
 SODA.constants.processing.lines_per_basic_belt = {30, 6, 3, 3}
 SODA.constants.processing.machine_speeds = {1, 1, 2, 2}
 
-SODA.constants.processing.mining_speeds = {0.125, 0.375, 1.25}
+SODA.constants.processing.mining_speeds = {0.125, 0.25, 1.5}
 
 SODA.constants.processing.energy_per_ore = {600, 360, 450} -- in kJ, vanilla = 600, 180 (x2)
 SODA.constants.processing.energy_per_ingot = {1152, 900, 1500, 1200} -- in kJ, vanilla (plates) = 288, 144, 288 (x8)
 
-SODA.constants.processing.pollution_per_60_ore = {96, 36, 25} -- vanilla = 48, 20 (x2)
+SODA.constants.processing.pollution_per_60_ore = {96, 36, 24} -- vanilla = 48, 20 (x2)
 SODA.constants.processing.pollution_per_60_ingots = {60, 90, 45, 24} -- vanilla (plates) = 6.4, 6.4, 1.6 (x8)
 
 -- CALCULATED

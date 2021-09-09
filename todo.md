@@ -1,9 +1,9 @@
 # TODO
 
-set up pollution
+miner art
+electric pump - 300kW
 **lang engine**
 **analyzer**
-**miners**
 **material controller**
 **ore processing**
 **logistic machines**

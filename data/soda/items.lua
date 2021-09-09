@@ -5,7 +5,9 @@ function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures)
         icon_spec = {}
     end
     local item = {type = "item", name = name, order = order .. "[" .. name .. "]", stack_size = stack_size or 100, subgroup = subgroup}
-    item = SODA.icon.make(item, 64, SODA.path.icons((icon_spec.folders or "") .. "/" .. (icon_spec.name or name), icon_spec.vanilla), icon_spec.mipmaps, icon_spec.tint, icon_spec.icons)
+    item = SODA.icon.make(
+               item, 64, SODA.path.icons((icon_spec.folders and icon_spec.folders .. "/" or "") .. (icon_spec.name or name), icon_spec.vanilla), icon_spec.mipmaps, icon_spec.tint, icon_spec.icons
+           )
 
     if pictures then
         if icon_spec.icons then
@@ -14,7 +16,7 @@ function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures)
             item.pictures = {}
             for i = 1, pictures, 1 do
                 item.pictures[i] = {
-                    filename = SODA.path.icons((icon_spec.folders or "") .. "/" .. (icon_spec.name or name) .. (i == 1 and "" or "-" .. i - 1), icon_spec.vanilla),
+                    filename = SODA.path.icons((icon_spec.folders and icon_spec.folders .. "/" or "") .. (icon_spec.name or name) .. (i == 1 and "" or "-" .. i - 1), icon_spec.vanilla),
                     mipmap_count = icon_spec.mipmaps,
                     scale = 0.25,
                     size = 64,
