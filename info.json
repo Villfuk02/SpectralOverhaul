@@ -4,7 +4,8 @@
     "title": "Spectral Overhaul",
     "author": "Villfuk02",
     "dependencies": [
-        "base >= 1.1.39"
+        "base >= 1.1.39",
+        "BurnerOffshorePump"
     ],
     "description": "TODO",
     "factorio_version": "1.1"

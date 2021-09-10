@@ -1,4 +1,4 @@
-local whitelist = {["rocket-part"] = true}
+local whitelist = {["rocket-part"] = true, ["bop-make-water"] = true}
 
 for b, _ in pairs(data.raw.recipe) do
     if not whitelist[b] then

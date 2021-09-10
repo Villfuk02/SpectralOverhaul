@@ -1,7 +1,5 @@
 -- SUBGROUP
 data:extend{{type = "item-subgroup", name = "mining-drills", group = "production", order = "b"}}
--- MAKE WATER BURNABLE
-data.raw.fluid.water.fuel_value = "250J"
 
 local function create_miner(name, order, width, height, mining_size, max_health, power, speed, yield, energy_source, module_slots)
     local miner = table.deepcopy(data.raw["mining-drill"]["electric-mining-drill"])
@@ -33,20 +31,20 @@ create_miner(
     {type = "electric", emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[2] * 3 / 2, usage_priority = "secondary-input"}, 1
 )
 create_miner(
-    "dissolving-miner", "1c", 3, 3, 5, 300, SODA.constants.processing.power_per_miner[2] / 3, SODA.constants.processing.mining_speeds[2] * 3 / 5, 125, {
+    "dissolving-miner", "1c", 3, 3, 5, 300, SODA.constants.processing.power_per_miner[2], SODA.constants.processing.mining_speeds[2] * 3 / 5, 125, {
         type = "fluid",
         burns_fluid = true,
         fluid_box = {
             pipe_connections = {
                 {position = {-2, -1}}, {position = {-1, -2}}, {position = {2, 1}}, {position = {1, 2}}, {position = {2, -1}}, {position = {1, -2}}, {position = {-2, 1}}, {position = {-1, 2}},
             },
+            pipe_covers = pipecoverspictures(),
             filter = "water",
             base_level = -1,
             height = 2,
-            base_area = 2,
         },
         scale_fluid_usage = true,
-        emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[2] / 5,
+        emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[2] / 2,
         usage_priority = "secondary-input",
     }, 1
 )
@@ -60,20 +58,21 @@ create_miner(
     {type = "electric", emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[3] * 3 / 2, usage_priority = "secondary-input"}, 3
 )
 create_miner(
-    "big-dissolving-miner", "2c", 5, 5, 7, 600, SODA.constants.processing.power_per_miner[3] / 3, SODA.constants.processing.mining_speeds[3] * 3 / 5, 125, {
+    "big-dissolving-miner", "2c", 5, 5, 7, 600, SODA.constants.processing.power_per_miner[3], SODA.constants.processing.mining_speeds[3] * 3 / 5, 125, {
         type = "fluid",
         burns_fluid = true,
         fluid_box = {
             pipe_connections = {
                 {position = {-2, -3}}, {position = {-3, -2}}, {position = {2, 3}}, {position = {3, 2}}, {position = {2, -3}}, {position = {3, -2}}, {position = {-2, 3}}, {position = {-3, 2}},
             },
+            pipe_covers = pipecoverspictures(),
             filter = "water",
             base_level = -1,
             height = 2,
-            base_area = 10,
+            base_area = 5,
         },
         scale_fluid_usage = true,
-        emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[3] / 5,
+        emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[3] / 2,
         usage_priority = "secondary-input",
     }, 1
 )

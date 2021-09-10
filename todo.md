@@ -1,7 +1,6 @@
 # TODO
 
 miner art
-electric pump - 300kW
 **lang engine**
 **analyzer**
 **material controller**
@@ -26,3 +25,4 @@ mod metadata
 remove relic techs (data.remove.recipes)
 hide unused items
 colorblindness
+space exploration
