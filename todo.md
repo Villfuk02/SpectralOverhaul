@@ -5,9 +5,9 @@ change stone to gravel
 differentiate ingot icons
 reorder stuff
 machine generator
+hide deepcopy error
 **lang engine**
 **analyzer**
-**material controller**
 **ore processing**
 **logistics**
 **production chain**

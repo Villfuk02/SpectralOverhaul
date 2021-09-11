@@ -1,5 +1,5 @@
 -- START
-data.raw.furnace["stone-furnace"].energy_usage = SODA.constants.processing.power_per_processing_line[1] .. "kW"
+data.raw.furnace["stone-furnace"].energy_usage = 200 .. "kW"
 data.raw.furnace["stone-furnace"].crafting_speed = SODA.constants.processing.machine_speeds[1]
 data.raw.furnace["stone-furnace"].energy_source.emissions_per_minute = SODA.constants.processing.pollution_per_processing_line_per_minute[1]
 data.raw.furnace["stone-furnace"].result_inventory_size = 2
@@ -14,8 +14,8 @@ crusher.name = "crusher"
 crusher.result_inventory_size = 2
 crusher.crafting_categories = {"crushing"}
 crusher.crafting_speed = 1
-crusher.energy_source.emissions_per_minute = SODA.constants.processing.pollution_per_processing_line_per_minute[2] * 4 / 15
-crusher.energy_usage = SODA.constants.processing.power_per_processing_line[2] * 6 / 20 * 30 / 31 .. "kW"
+crusher.energy_source.emissions_per_minute = 12
+crusher.energy_usage = 600 * 30 / 31 .. "kW"
 crusher.module_specification.module_slots = 0
 crusher.max_health = 400
 crusher.collision_box = {{-1.8, -1.8}, {1.8, 1.8}}
@@ -34,9 +34,9 @@ blast_furnace.name = "blast-furnace"
 blast_furnace.type = "assembling-machine"
 blast_furnace.crafting_categories = {"blast-smelting"}
 blast_furnace.crafting_speed = 1
-blast_furnace.energy_source.emissions_per_minute = SODA.constants.processing.pollution_per_processing_line_per_minute[2] * 4 / 15
+blast_furnace.energy_source.emissions_per_minute = 8
 blast_furnace.energy_source.drain = "0W"
-blast_furnace.energy_usage = SODA.constants.processing.power_per_processing_line[2] * 5 / 20 .. "kW"
+blast_furnace.energy_usage = 500 .. "kW"
 blast_furnace.module_specification.module_slots = 0
 blast_furnace.max_health = 350
 blast_furnace.collision_box = {{-1.45, -1.45}, {1.45, 1.45}}
@@ -47,8 +47,9 @@ SODA.icon.make("assembling-machine", "blast-furnace", 64, SODA.path.icons("machi
 
 -- CHEM PLANT
 
-data.raw["assembling-machine"]["chemical-plant"].energy_usage = SODA.constants.processing.power_per_processing_line[2] * 1.25 / 20 * 30 / 31 .. "kW"
+data.raw["assembling-machine"]["chemical-plant"].energy_usage = 125 * 30 / 31 .. "kW"
 data.raw["assembling-machine"]["chemical-plant"].module_specification.module_slots = 0
+data.raw["assembling-machine"]["chemical-plant"].energy_source.emissions_per_minute = 5
 
 -- MID
 -- LATE
