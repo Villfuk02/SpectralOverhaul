@@ -3,8 +3,8 @@ local all_packs = SODA.tech.generate_cost(6, true, "KEHASILCTPOR").ingredients
 -- GROUP
 local group_name = "research"
 local group = {type = "item-group", name = group_name, order = "r"}
-group = SODA.icon.make(group, 256, SODA.path.graphics("technology/research-speed", true))
 data:extend{group}
+SODA.icon.make("item-group", group_name, 256, SODA.path.graphics("technology/research-speed", true))
 
 -- SUBGROUPS
 local subgroups = {"production", "space", "packs"}

@@ -4,10 +4,10 @@ SODA.mat = {}
 SODA.mat.list = {"black", "yellow", "green", "azure", "silver", "pink", "lime", "blue", "white", "purple", "orange", "red"}
 
 SODA.mat.types = {
-    fuel = {list = {"black", "yellow", "green"}, black = 1, yellow = 2, green = 3, ingots = false},
-    structure = {list = {"azure", "silver", "pink"}, azure = 1, silver = 2, pink = 3, ingots = true},
-    mechanisms = {list = {"lime", "blue", "white"}, lime = 1, blue = 2, white = 3, ingots = true},
-    electronics = {list = {"purple", "orange", "red"}, purple = 1, orange = 2, red = 3, ingots = true},
+    fuel = {list = {"black", "yellow", "green"}, black = 1, yellow = 2, green = 3, processing = false},
+    structure = {list = {"azure", "silver", "pink"}, azure = 1, silver = 2, pink = 3, processing = true},
+    mechanisms = {list = {"lime", "blue", "white"}, lime = 1, blue = 2, white = 3, processing = true},
+    electronics = {list = {"purple", "orange", "red"}, purple = 1, orange = 2, red = 3, processing = true},
 }
 
 SODA.MATS.black = {name = "kaerium", type = "fuel", order = "a1", map_color = {30, 30, 30}, tint = {60, 60, 60}, short = "K"}

@@ -30,10 +30,10 @@ return function(name)
                           {
             name = name .. "-ore",
             order = "b",
-            base_density = 10,
+            base_density = 4,
             has_starting_area_placement = true,
-            regular_rq_factor_multiplier = 1.1,
-            starting_rq_factor_multiplier = 1.1,
+            regular_rq_factor_multiplier = 1.5,
+            starting_rq_factor_multiplier = 1.5,
             autoplace_control_name = SODA.MATS[name].type .. "-ores",
         }
                       )

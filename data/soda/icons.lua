@@ -1,5 +1,6 @@
 SODA.icon = {}
-function SODA.icon.make(tbl, size, path, mipmaps, tint, icons)
+function SODA.icon.make(type, name, size, path, mipmaps, tint, icons)
+    local tbl = data.raw[type][name]
     tbl.icon_size = size
     tbl.icon_mipmaps = mipmaps
     if tint then
@@ -9,8 +10,7 @@ function SODA.icon.make(tbl, size, path, mipmaps, tint, icons)
     else
         tbl.icon = path
     end
-
-    return tbl
+    data.raw[type][name] = tbl
 end
 
 function SODA.icon.layers()

@@ -5,9 +5,6 @@ function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures)
         icon_spec = {}
     end
     local item = {type = "item", name = name, order = order .. "[" .. name .. "]", stack_size = stack_size or 100, subgroup = subgroup}
-    item = SODA.icon.make(
-               item, 64, SODA.path.icons((icon_spec.folders and icon_spec.folders .. "/" or "") .. (icon_spec.name or name), icon_spec.vanilla), icon_spec.mipmaps, icon_spec.tint, icon_spec.icons
-           )
 
     if pictures then
         if icon_spec.icons then
@@ -26,4 +23,7 @@ function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures)
         end
     end
     data:extend{item}
+    SODA.icon.make(
+        "item", name, 64, SODA.path.icons((icon_spec.folders and icon_spec.folders .. "/" or "") .. (icon_spec.name or name), icon_spec.vanilla), icon_spec.mipmaps, icon_spec.tint, icon_spec.icons
+    )
 end

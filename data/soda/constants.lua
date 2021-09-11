@@ -16,9 +16,9 @@ SODA.constants.processing.machine_speeds = {1, 1, 2, 4}
 SODA.constants.processing.mining_speeds = {0.125, 0.25, 1.5}
 
 SODA.constants.processing.energy_per_ore = {600, 400, 600} -- in kJ, vanilla = 600, 180 (x2)
-SODA.constants.processing.energy_per_ingot = {1152, 1280, 1600, 1280} -- in kJ, vanilla (plates) = 288, 144, 288 (x8)
+SODA.constants.processing.energy_per_ingot = {4800, 6400, 4000, 2560} -- in kJ, vanilla (plates) = 288, 144, 288 (x8), including fuel used in processing
 
-SODA.constants.processing.pollution_per_60_ore = {96, 36, 24} -- vanilla = 48, 20 (x2)
+SODA.constants.processing.pollution_per_60_ore = {96, 36, 36} -- vanilla = 48, 20 (x2)
 SODA.constants.processing.pollution_per_60_ingots = {60, 48, 36, 24} -- vanilla (plates) = 6.4, 6.4, 1.6 (x8)
 
 -- CALCULATED

@@ -1,4 +1,5 @@
-data.raw.recipe["bop-make-water"].results = {{type = "fluid", name = "water", amount = 1200}}
+data.raw.recipe["bop-make-water"].results = {{type = "fluid", name = "water", amount = 300}}
+data.raw.recipe["bop-make-water"].energy_required = 0.25
 data.raw["assembling-machine"]["electric-offshore-pump"].crafting_speed = 1
 data.raw["assembling-machine"]["electric-offshore-pump"].module_specification = {module_slots = 0}
 data.raw["assembling-machine"]["electric-offshore-pump"].fluid_boxes.fluid_box.base_area = 12

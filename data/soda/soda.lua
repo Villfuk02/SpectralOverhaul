@@ -15,6 +15,12 @@ require "data.soda.icons"
 -- ADD ITEM GENERATORS
 require "data.soda.items"
 
+-- ADD FLUID GENERATORS
+require "data.soda.fluids"
+
+-- ADD RECIPE GENERATORS
+require "data.soda.recipes"
+
 -- ADD TECH GENERATORS
 require "data.soda.technology"
 

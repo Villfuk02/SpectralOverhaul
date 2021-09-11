@@ -1,14 +1,19 @@
 # TODO
 
-miner art
+machine art
+change stone to gravel
+differentiate ingot icons
+reorder stuff
+machine generator
 **lang engine**
 **analyzer**
 **material controller**
 **ore processing**
-**logistic machines**
+**logistics**
 **production chain**
 **tech**
 **power gen**
+**finish up game start**
 **REST OF THE FUCKING MOD**
 
 tech science prereqs
@@ -26,3 +31,4 @@ remove relic techs (data.remove.recipes)
 hide unused items
 colorblindness
 space exploration
+errors ("smelting")
