@@ -16,10 +16,8 @@ a factorio mod
 
 ## <span style="font-size:xx-large">**TODO**</span>
 
-differentiate ingot icons  
 reorder stuff  
 **analyzer**  
-**ore processing**  
 **logistics**  
 **production chain**  
 **tech**  
@@ -29,7 +27,8 @@ tech science prereqs
 
 ## **later**
 
-**REST OF THE FUCKING MOD**  
+**MID GAME**
+**LATE GAME**  
 **combat**
 
 ## **polish**

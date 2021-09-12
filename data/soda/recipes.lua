@@ -1,6 +1,6 @@
 SODA.recipe = {}
 
-function SODA.recipe.add_simple(name, category, input, amt, result, result_amt, time, subgroup, order, tint, show_products)
+function SODA.recipe.add_simple(name, category, input, amt, result, result_amt, time, subgroup, order, tint, show_products, icons)
     local r = {
         type = "recipe",
         name = name,
@@ -10,6 +10,8 @@ function SODA.recipe.add_simple(name, category, input, amt, result, result_amt, 
         subgroup = subgroup,
         order = order,
         localised_name = SODA.lang.cut_up(name),
+        icons = icons,
+        icon_size = icons and 64 or nil,
     }
     if result_amt then
         r.result = result

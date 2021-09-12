@@ -17,7 +17,7 @@ SODA.item.add_subgroup("ingots", "processing", "b")
 for_all_processable(
     function(key, value)
         SODA.item.add(key .. "-ingot", value.order, "ingots", 100, {folders = "processing", name = "ingot", tint = value.tint})
-        SODA.recipe.add_simple(key .. "-ingot", "smelting", key .. "-ore", 6, key .. "-ingot", 1, 24)
+        SODA.recipe.add_simple(key .. "-ingot", "smelting", key .. "-ore", 6, key .. "-ingot", 1, 24, nil, nil, nil, nil, SODA.icon.icons_1_to_1(key .. "-ore", key .. "-ingot"))
     end
 )
 
@@ -37,13 +37,12 @@ for_all_processable(
     function(name, values)
         SODA.recipe.add_simple(
             name .. "-ingot-blasting", "blast-smelting", {{"activated-black", 2}, {"stone", 2}, {name .. "-ore", 4}}, nil, {{name .. "-ingot", 1}, {"slag", 1}}, nil,
-            SODA.constants.processing.total_time_per_ingot[2], "ingots-blasting", values.order
+            SODA.constants.processing.total_time_per_ingot[2], "ingots-blasting", values.order, nil, nil, SODA.icon.icons_3_to_1("activated-black", name .. "-ore", "stone", name .. "-ingot")
         )
-        SODA.icon.make("recipe", name .. "-ingot-blasting", 64, SODA.path.icons("processing/ingot"), nil, values.tint)
     end
 )
 SODA.item.add("slag", "a", "side-products", 50, {folders = "processing"})
-SODA.recipe.add_simple("slag-crushing", "crushing", "slag", 1, "stone", 2, SODA.constants.processing.total_time_per_ingot[2] / 4, nil, nil, nil, true)
+SODA.recipe.add_simple("slag-crushing", "crushing", "slag", 1, "stone", 2, SODA.constants.processing.total_time_per_ingot[2] / 4, nil, nil, nil, true, SODA.icon.icons_1_to_1_vertical("slag", "stone"))
 
 -- yellow
 
@@ -56,13 +55,15 @@ for_all_processable(
         )
         SODA.recipe.add_simple(
             name .. "-ingot-reduction", "smelting", name .. "-reduction-mix", 6, {{name .. "-ingot", 1}, {"yellow-oxide", 2}}, nil, SODA.constants.processing.total_time_per_ingot[2],
-            "ingots-reduction", values.order
+            "ingots-reduction", values.order, nil, nil, SODA.icon.icons_1_to_1(name .. "-reduction-mix", name .. "-ingot")
         )
-        SODA.icon.make("recipe", name .. "-ingot-reduction", 64, SODA.path.icons("processing/ingot"), nil, values.tint)
     end
 )
 SODA.item.add("yellow-oxide", "b", "side-products", 100, {folders = "processing"})
-SODA.recipe.add_simple("yellow-reduction", "smelting", "yellow-oxide", 4, "yellow-ore", 3, SODA.constants.processing.total_time_per_ingot[2] / 2, nil, nil, nil, true)
+SODA.recipe.add_simple(
+    "yellow-reduction", "smelting", "yellow-oxide", 4, "yellow-ore", 3, SODA.constants.processing.total_time_per_ingot[2] / 2, nil, nil, nil, true,
+    SODA.icon.icons_1_to_1_vertical("yellow-oxide", "yellow-ore")
+)
 
 -- green
 
@@ -79,9 +80,9 @@ for_all_processable(
             SODA.constants.processing.total_time_per_ingot[2] / 4, nil, nil, values.tint
         )
         SODA.recipe.add_simple(
-            "purified-" .. name .. "-smelting", "smelting", "purified-" .. name, 4, name .. "-ingot", 1, SODA.constants.processing.total_time_per_ingot[2], "ingots-purified", values.order
+            "purified-" .. name .. "-smelting", "smelting", "purified-" .. name, 4, name .. "-ingot", 1, SODA.constants.processing.total_time_per_ingot[2], "ingots-purified", values.order, nil, nil,
+            SODA.icon.icons_1_to_1("purified-" .. name, name .. "-ingot")
         )
-        SODA.icon.make("recipe", "purified-" .. name .. "-smelting", 64, SODA.path.icons("processing/ingot"), nil, values.tint)
     end
 )
 
