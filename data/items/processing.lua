@@ -6,8 +6,13 @@ local function for_all_processable(func)
     end
 end
 
+local group_name = "processing"
+SODA.item.add_group(group_name, "bz", SODA.path.graphics("technology/advanced-material-processing", true))
+data.raw["item-subgroup"]["raw-resource"].group = group_name
+data.raw["item-subgroup"]["raw-resource"].order = "a"
+
 -- START (67% yield, 1.5 fuel per ingot)
-data:extend{{type = "item-subgroup", name = "ingots", group = "intermediate-products", order = "bz"}}
+SODA.item.add_subgroup("ingots", "processing", "b")
 
 for_all_processable(
     function(key, value)
@@ -17,13 +22,12 @@ for_all_processable(
 )
 
 -- EARLY (0.8 fuel per ingot)
-
-data:extend{{type = "item-subgroup", name = "side-products", group = "intermediate-products", order = "c1"}}
-data:extend{{type = "item-subgroup", name = "ingots-blasting", group = "intermediate-products", order = "c2a"}}
-data:extend{{type = "item-subgroup", name = "reduction-mixes", group = "intermediate-products", order = "c2b1"}}
-data:extend{{type = "item-subgroup", name = "ingots-reduction", group = "intermediate-products", order = "c2b2"}}
-data:extend{{type = "item-subgroup", name = "purified", group = "intermediate-products", order = "c2c1"}}
-data:extend{{type = "item-subgroup", name = "ingots-purified", group = "intermediate-products", order = "c2c2"}}
+SODA.item.add_subgroup("side-products", group_name, "c")
+SODA.item.add_subgroup("ingots-blasting", group_name, "da")
+SODA.item.add_subgroup("reduction-mixes", group_name, "db1")
+SODA.item.add_subgroup("ingots-reduction", group_name, "db2")
+SODA.item.add_subgroup("purified", group_name, "dc1")
+SODA.item.add_subgroup("ingots-purified", group_name, "dc2")
 
 -- black
 
@@ -64,15 +68,15 @@ SODA.recipe.add_simple("yellow-reduction", "smelting", "yellow-oxide", 4, "yello
 
 SODA.fluid.add("green-acid", "2c", "side-products", SODA.MATS.green.tint, {folders = "fluids"})
 SODA.recipe.add_simple(
-    "green-acid", "chemistry", {{"green-ore", 1}, {type = "fluid", name = "water", amount = 200}}, nil, {{type = "fluid", name = "green-acid", amount = 100}}, nil,
+    "green-acid", "chemistry", {{"green-ore", 1}, {type = "fluid", name = "water", amount = 200}}, nil, {{type = "fluid", name = "green-acid", amount = 200}}, nil,
     SODA.constants.processing.total_time_per_ingot[2], nil, nil, SODA.MATS.green.tint
 )
 for_all_processable(
     function(name, values)
         SODA.item.add("purified-" .. name, values.order, "purified", 100, {folders = "processing", name = "purified", tint = values.tint})
         SODA.recipe.add_simple(
-            "purified-" .. name, "chemistry", {{name .. "-ore", 4}, {type = "fluid", name = "green-acid", amount = 50}}, nil, "purified-" .. name, 4, SODA.constants.processing.total_time_per_ingot[2],
-            nil, nil, values.tint
+            "purified-" .. name, "chemistry", {{name .. "-ore", 1}, {type = "fluid", name = "green-acid", amount = 25}}, nil, "purified-" .. name, 1,
+            SODA.constants.processing.total_time_per_ingot[2] / 4, nil, nil, values.tint
         )
         SODA.recipe.add_simple(
             "purified-" .. name .. "-smelting", "smelting", "purified-" .. name, 4, name .. "-ingot", 1, SODA.constants.processing.total_time_per_ingot[2], "ingots-purified", values.order

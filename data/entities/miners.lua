@@ -1,8 +1,8 @@
 -- SUBGROUP
-data:extend{{type = "item-subgroup", name = "mining-drills", group = "production", order = "b"}}
+SODA.item.add_subgroup("mining-drills", "production", "b")
 
 -- BURNER
-data.raw["mining-drill"]["burner-mining-drill"].energy_usage = SODA.constants.processing.power_per_miner[1] .. "kW"
+data.raw["mining-drill"]["burner-mining-drill"].energy_usage = SODA.entity.energy(SODA.constants.processing.power_per_miner[1], true)
 data.raw["mining-drill"]["burner-mining-drill"].mining_speed = SODA.constants.processing.mining_speeds[1]
 data.raw["mining-drill"]["burner-mining-drill"].energy_source.emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[1]
 data.raw.item["burner-mining-drill"].subgroup = "mining-drills"
@@ -18,7 +18,7 @@ local function create_miner(name, order, width, height, mining_size, max_health,
     miner.collision_box = {{-width / 2 + 0.1, -height / 2 + 0.1}, {width / 2 - 0.1, height / 2 - 0.1}}
     miner.vector_to_place_result = {width % 2 == 0 and 0.5 or 0, -height / 2 - 0.35}
     miner.max_health = max_health
-    miner.energy_usage = power and power .. "kW" or nil
+    miner.energy_usage = SODA.entity.energy(power, true)
     miner.energy_source = energy_source
     miner.mining_speed = speed
     miner.base_productivity = yield / 100 - 1

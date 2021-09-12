@@ -27,3 +27,13 @@ function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures)
         "item", name, 64, SODA.path.icons((icon_spec.folders and icon_spec.folders .. "/" or "") .. (icon_spec.name or name), icon_spec.vanilla), icon_spec.mipmaps, icon_spec.tint, icon_spec.icons
     )
 end
+
+function SODA.item.add_group(name, order, icon_path)
+    local group = {type = "item-group", name = name, order = order}
+    data:extend{group}
+    SODA.icon.make("item-group", name, 256, icon_path)
+end
+
+function SODA.item.add_subgroup(name, group, order)
+    data:extend{{type = "item-subgroup", name = name, group = group, order = order}}
+end

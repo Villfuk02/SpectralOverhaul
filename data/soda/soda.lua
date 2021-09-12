@@ -9,6 +9,9 @@ require "data.soda.materials"
 -- ADD PATH GENERATORS
 require "data.soda.paths"
 
+-- ADD LANG ENGINE
+require "data.soda.lang"
+
 -- ADD ICON GENERATORS
 require "data.soda.icons"
 
@@ -21,11 +24,11 @@ require "data.soda.fluids"
 -- ADD RECIPE GENERATORS
 require "data.soda.recipes"
 
+-- ADD MACHINE GENERATORS
+require "data.soda.entities"
+
 -- ADD TECH GENERATORS
 require "data.soda.technology"
-
--- ADD LANG ENGINE
-require "data.soda.lang"
 
 -- SAVE IRON-ORE PRESET SETTINGS
 SODA.autoplace_presets = {}

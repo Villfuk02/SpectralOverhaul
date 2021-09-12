@@ -26,3 +26,7 @@ function SODA.recipe.add_simple(name, category, input, amt, result, result_amt, 
     end
     data:extend{r}
 end
+
+function SODA.recipe.add_category(name)
+    data:extend{{type = "recipe-category", name = name}}
+end
