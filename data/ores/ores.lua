@@ -15,7 +15,7 @@ local function resource(name)
     return {
         type = "resource",
         name = name,
-        localised_name = {"item-name." .. name .. "-ore"},
+        localised_name = SODA.lang.cut_up(name .. "-ore"),
         icons = {{icon = SODA.path.icons("ores/ore"), icon_size = 64, icon_scale = 0.5, tint = SODA.MATS[name].tint}},
         icon_mipmaps = 4,
         icon_size = 64,

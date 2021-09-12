@@ -4,7 +4,7 @@ function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures)
     if icon_spec == nil then
         icon_spec = {}
     end
-    local item = {type = "item", name = name, order = order .. "[" .. name .. "]", stack_size = stack_size or 100, subgroup = subgroup}
+    local item = {type = "item", name = name, order = order .. "[" .. name .. "]", stack_size = stack_size or 100, subgroup = subgroup, localised_name = SODA.lang.cut_up(name)}
 
     if pictures then
         if icon_spec.icons then

@@ -24,6 +24,9 @@ require "data.soda.recipes"
 -- ADD TECH GENERATORS
 require "data.soda.technology"
 
+-- ADD LANG ENGINE
+require "data.soda.lang"
+
 -- SAVE IRON-ORE PRESET SETTINGS
 SODA.autoplace_presets = {}
 for k, preset in pairs(data.raw["map-gen-presets"]["default"]) do

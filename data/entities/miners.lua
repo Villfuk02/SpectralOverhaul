@@ -12,6 +12,7 @@ data.raw.item["burner-mining-drill"].order = "a"
 local function create_miner(name, order, width, height, mining_size, max_health, power, speed, yield, energy_source, module_slots)
     local miner = table.deepcopy(data.raw["mining-drill"]["electric-mining-drill"])
     miner.name = name
+    miner.localised_name = SODA.lang.cut_up(name)
     miner.minable.result = name
     miner.selection_box = {{-width / 2, -height / 2}, {width / 2, height / 2}}
     miner.collision_box = {{-width / 2 + 0.1, -height / 2 + 0.1}, {width / 2 - 0.1, height / 2 - 0.1}}
