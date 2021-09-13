@@ -37,3 +37,13 @@ end
 function SODA.item.add_subgroup(name, group, order)
     data:extend{{type = "item-subgroup", name = name, group = group, order = order}}
 end
+
+function SODA.item.make_fuel(name, value, fuel_type, burnt_result)
+    data.raw.item[name].fuel_value = value .. "kJ"
+    data.raw.item[name].fuel_category = fuel_type or "chemical"
+    data.raw.item[name].burnt_result = burnt_result
+end
+
+function SODA.item.add_fuel_category(name)
+    data:extend{{type = "fuel-category", name = name, localised_name = SODA.lang.cut_up(name)}}
+end

@@ -1,7 +1,7 @@
 -- START
 data.raw.furnace["stone-furnace"].energy_usage = SODA.entity.power(200, true)
-data.raw.furnace["stone-furnace"].crafting_speed = SODA.constants.processing.machine_speeds[1]
-data.raw.furnace["stone-furnace"].energy_source.emissions_per_minute = SODA.constants.processing.pollution_per_processing_line_per_minute[1]
+data.raw.furnace["stone-furnace"].crafting_speed = 1
+data.raw.furnace["stone-furnace"].energy_source.emissions_per_minute = 2.5
 data.raw.furnace["stone-furnace"].result_inventory_size = 2
 -- EARLY
 

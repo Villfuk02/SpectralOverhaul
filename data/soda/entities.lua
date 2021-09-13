@@ -4,7 +4,7 @@ function SODA.entity.power(power_in_kW, no_drain)
     return (no_drain and power_in_kW or power_in_kW * 30 / 31) .. "kW"
 end
 
-local function add_machine(_type, name, order, subgroup, size, health, sound_type, sound_machine, to_add, extras)
+local function add_machine(_type, name, order, subgroup, size, health, sound_type, sound_machine, rotatable, to_add, extras)
     if type(size) == "number" then
         size = {size, size}
     end
@@ -28,8 +28,12 @@ local function add_machine(_type, name, order, subgroup, size, health, sound_typ
         animation = animation,
         idle_animation = table.deepcopy(animation),
         working_sound = sound_type and table.deepcopy(data.raw[sound_type][sound_machine].working_sound) or nil,
+        flags = {"placeable-player", "player-creation"},
     }
     entity.idle_animation.tint = {0.7, 0.7, 0.7, 1}
+    if not rotatable then
+        table.insert(entity.flags, "not-rotatable")
+    end
 
     for key, value in pairs(to_add) do
         entity[key] = value
@@ -66,7 +70,7 @@ local function add_crafting_machine(furnace, name, order, subgroup, size, health
         match_animation_speed_to_activity = not furnace,
     }
 
-    add_machine(type_name, name, order, subgroup, size, health, sound_type, sound_machine, to_add, extras)
+    add_machine(type_name, name, order, subgroup, size, health, sound_type, sound_machine, true, to_add, extras)
 end
 
 function SODA.entity.add_assembling_machine(name, order, subgroup, size, health, sound_type, sound_machine, crafting_categories, speed, power, energy_type, pollution, has_drain, module_slots, extras)
@@ -91,7 +95,7 @@ function SODA.entity.add_fluid_generator()
 
 end
 
-function SODA.entity.add_burner_generator(name, order, subgroup, size, health, sound_type, sound_machine, fuel_type, power, effectivity, extras)
+function SODA.entity.add_burner_generator(name, order, subgroup, size, health, sound_type, sound_machine, fuel_type, power, pollution, has_burnt_inventory, effectivity, rotatable, extras)
 
     local to_add = {
         energy_source = {type = "electric", usage_priority = "secondary-output"},
@@ -101,9 +105,11 @@ function SODA.entity.add_burner_generator(name, order, subgroup, size, health, s
             fuel_categories = type(fuel_type) == "table" and fuel_type or nil,
             effectivity = effectivity,
             fuel_inventory_size = 1,
+            burnt_inventory_size = has_burnt_inventory and 1 or 0,
+            emissions_per_minute = pollution,
         },
         max_power_output = SODA.entity.power(power, true),
     }
 
-    add_machine("burner-generator", name, order, subgroup, size, health, sound_type, sound_machine, to_add, extras)
+    add_machine("burner-generator", name, order, subgroup, size, health, sound_type, sound_machine, rotatable, to_add, extras)
 end

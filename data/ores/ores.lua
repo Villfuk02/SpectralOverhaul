@@ -38,3 +38,7 @@ for _, name in pairs(SODA.mat.list) do
     data:extend{resource(name), particle(name)}
     SODA.item.add(name .. "-ore", "e-" .. SODA.MATS[name].order, "raw-resource", nil, {folders = "ores", name = "ore", mipmaps = 4, tint = SODA.MATS[name].tint}, 4)
 end
+
+SODA.item.make_fuel("black-ore", 3200)
+SODA.item.make_fuel("yellow-ore", 3200)
+SODA.item.make_fuel("green-ore", 3200)

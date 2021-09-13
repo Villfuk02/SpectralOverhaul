@@ -1,4 +1,4 @@
 -- PROCESSING
 require "data.items.processing"
--- FUEL
-require "data.items.fuel"
+-- POWER
+require "data.items.power"

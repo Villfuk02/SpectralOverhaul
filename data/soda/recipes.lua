@@ -1,6 +1,6 @@
 SODA.recipe = {}
 
-function SODA.recipe.add_simple(name, category, input, amt, result, result_amt, time, subgroup, order, tint, show_products, icons)
+function SODA.recipe.add(name, category, input, amt, result, result_amt, time, subgroup, order, tint, show_products, icons)
     local r = {
         type = "recipe",
         name = name,
