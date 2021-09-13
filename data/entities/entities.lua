@@ -4,3 +4,5 @@ require "data.entities.pump"
 require "data.entities.miners"
 -- PROCESSING
 require "data.entities.processing"
+-- POWER GEN
+require "data.entities.power"
