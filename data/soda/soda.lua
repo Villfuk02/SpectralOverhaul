@@ -6,6 +6,9 @@ require "data.soda.constants"
 -- INIT MATERIALS
 require "data.soda.materials"
 
+-- INIT COLORS
+require "data.soda.colors"
+
 -- ADD PATH GENERATORS
 require "data.soda.paths"
 

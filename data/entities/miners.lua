@@ -54,7 +54,6 @@ create_miner(
         },
         scale_fluid_usage = true,
         emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[2] / 2,
-        usage_priority = "secondary-input",
     }, 1
 )
 
@@ -83,6 +82,5 @@ create_miner(
         },
         scale_fluid_usage = true,
         emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[3] / 2,
-        usage_priority = "secondary-input",
     }, 1
 )

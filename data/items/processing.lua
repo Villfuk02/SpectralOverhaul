@@ -31,7 +31,7 @@ SODA.item.add_subgroup("ingots-purified", group_name, "dc2")
 
 -- black
 
-SODA.item.add("activated-black", "a", "side-products", 200, {folders = "processing"})
+SODA.item.add("activated-black", "1a", "side-products", 200, {folders = "processing"})
 SODA.recipe.add("activated-black", "smelting", "black-ore", 1, "activated-black", 4, 3.2)
 SODA.item.make_fuel("activated-black", (8000 + 200 * 3.2) / 4)
 for_all_processable(
@@ -62,7 +62,7 @@ SODA.recipe.add("yellow-reduction", "smelting", "yellow-oxide", 4, "yellow-ore",
 
 -- green
 
-SODA.fluid.add("green-acid", "2c", "side-products", SODA.MATS.green.tint, {folders = "fluids"})
+SODA.fluid.add("green-acid", "c", "side-products", SODA.MATS.green.tint, {folders = "fluids"})
 SODA.recipe.add(
     "green-acid", "chemistry", {{"green-ore", 1}, {type = "fluid", name = "water", amount = 200}}, nil, {{type = "fluid", name = "green-acid", amount = 200}}, nil, 3.2, nil, nil, SODA.MATS.green.tint
 )
@@ -80,6 +80,7 @@ for_all_processable(
 -- MID (0.4 fuel per ingot)
 
 SODA.item.add_subgroup("crushed-ores", group_name, "ea")
+SODA.item.add_subgroup("gravel", group_name, "eb")
 SODA.recipe.add_category("crushing-2")
 
 for_all_processable(
@@ -88,4 +89,14 @@ for_all_processable(
         SODA.recipe.add("crushed-" .. name .. "-ore", "crushing-2", name .. "-ore", 1, "crushed-" .. name .. "-ore", 2, 0.8)
     end
 )
+
+for _, m in pairs(SODA.mat.types.structure.list) do
+    for _, n in pairs(SODA.mat.types.electronics.list) do
+        SODA.recipe.add(
+            "gravel-from-" .. m .. "-and-" .. n, "chemistry", {{"crushed-" .. m .. "-ore", 4}, {"crushed-" .. n .. "-ore", 4}}, nil, "stone", 4, 2, "gravel", SODA.MATS[m].order .. SODA.MATS[n].order,
+            SODA.color.lerp(SODA.MATS[m].tint, SODA.MATS[n].tint, 0.5), true, SODA.icon.icons_2_to_1("crushed-" .. m .. "-ore", "crushed-" .. n .. "-ore", "stone")
+        )
+    end
+end
+
 -- LATE (0.32 fuel per ingot)

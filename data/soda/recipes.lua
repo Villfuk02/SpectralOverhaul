@@ -1,6 +1,10 @@
 SODA.recipe = {}
 
 function SODA.recipe.add(name, category, input, amt, result, result_amt, time, subgroup, order, tint, show_products, icons)
+    if not category then
+        category = name .. "-category"
+        SODA.recipe.add_category(category)
+    end
     local r = {
         type = "recipe",
         name = name,

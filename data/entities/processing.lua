@@ -7,7 +7,7 @@ data.raw.furnace["stone-furnace"].result_inventory_size = 2
 
 -- CRUSHER
 SODA.recipe.add_category("crushing")
-SODA.entity.add_furnace("crusher", "c1", "production-machine", 3.6, 400, "mining-drill", "electric-mining-drill", {"crushing"}, 1, 600, "electric", 12, true, 0, 2)
+SODA.entity.add_furnace("crusher", "c1", "production-machine", 3.6, 400, "mining-drill", "electric-mining-drill", {"crushing"}, 1, 600, true, 12, true, 0, 2)
 
 -- BLAST FURNACE
 SODA.recipe.add_category("blast-smelting")

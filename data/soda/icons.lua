@@ -25,7 +25,7 @@ local function get_icon_specs(name)
         end
     end
     if p == nil then
-        error("Prototype to copy icon from was not found: " .. name)
+        error("Prototype to copy icon from was not found: " .. tostring(name))
     end
     local s = {}
     if p.icon then
@@ -45,10 +45,21 @@ end
 
 function SODA.icon.icons_1_to_1_vertical(from, to)
     local layers = {{icon = SODA.path.graphics("almost-empty")}, get_icon_specs(to), get_icon_specs(from)}
-    layers[2].scale = 0.35
+    layers[2].scale = 0.4
     layers[2].shift = {0, 6}
     layers[3].scale = 0.3
     layers[3].shift = {0, -8}
+    return layers
+end
+
+function SODA.icon.icons_2_to_1(from_left, from_right, to)
+    local layers = {{icon = SODA.path.graphics("almost-empty")}, get_icon_specs(to), get_icon_specs(from_right), get_icon_specs(from_left)}
+    layers[2].scale = 0.4
+    layers[2].shift = {0, 6}
+    layers[3].scale = 0.3
+    layers[3].shift = {8, -8}
+    layers[4].scale = 0.3
+    layers[4].shift = {-8, -8}
     return layers
 end
 
