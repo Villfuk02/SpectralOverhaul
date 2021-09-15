@@ -1,6 +1,6 @@
 SODA.lang = {}
 
-local capture = {"black-ore", "yellow-ore", "green-ore"}
+local capture = {"black-ore", "yellow-ore", "green-ore", "stone-analysis", "stone-sample"}
 local capture_right = {"ingot"}
 local capture_left = {}
 for _, value in pairs(capture_left) do

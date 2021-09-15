@@ -17,7 +17,8 @@ SODA.item.add_subgroup("ingots", "processing", "b")
 for_all_processable(
     function(key, value)
         SODA.item.add(key .. "-ingot", value.order, "ingots", 100, {folders = "processing", name = "ingot", tint = value.tint})
-        SODA.recipe.add(key .. "-ingot", "smelting", key .. "-ore", 6, key .. "-ingot", 1, 24, nil, nil, nil, nil, SODA.icon.icons_1_to_1(key .. "-ore", key .. "-ingot"))
+        SODA.recipe
+            .add(key .. "-ingot", "smelting", key .. "-ore", 6, key .. "-ingot", 1, 24, nil, nil, nil, nil, SODA.icon.icons_1_to_1(key .. "-ore", key .. "-ingot"), {allow_as_intermediate = false})
     end
 )
 
@@ -38,12 +39,12 @@ for_all_processable(
     function(name, values)
         SODA.recipe.add(
             name .. "-ingot-blasting", "blast-smelting", {{"activated-black", 2}, {"stone", 2}, {name .. "-ore", 4}}, nil, {{name .. "-ingot", 1}, {"slag", 1}}, nil, 3.2, "ingots-blasting",
-            values.order, nil, nil, SODA.icon.icons_3_to_1("activated-black", name .. "-ore", "stone", name .. "-ingot")
+            values.order, nil, nil, SODA.icon.icons_3_to_1("activated-black", name .. "-ore", "stone", name .. "-ingot"), {allow_as_intermediate = false}
         )
     end
 )
 SODA.item.add("slag", "a", "side-products", 50, {folders = "processing"})
-SODA.recipe.add("slag-crushing", "crushing", "slag", 1, "stone", 2, 3.2 / 4, nil, nil, nil, true, SODA.icon.icons_1_to_1_vertical("slag", "stone"))
+SODA.recipe.add("slag-crushing", "crushing", "slag", 1, "stone", 2, 3.2 / 4, nil, nil, nil, true, SODA.icon.icons_1_to_1_vertical("slag", "stone"), {allow_as_intermediate = false})
 
 -- yellow
 
@@ -53,12 +54,14 @@ for_all_processable(
         SODA.recipe.add(name .. "-reduction-mix", "chemistry", {{"yellow-ore", 1}, {name .. "-ore", 2}}, nil, name .. "-reduction-mix", 3, 3.2 / 2, nil, nil, values.tint)
         SODA.recipe.add(
             name .. "-ingot-reduction", "smelting", name .. "-reduction-mix", 6, {{name .. "-ingot", 1}, {"yellow-oxide", 2}}, nil, 3.2, "ingots-reduction", values.order, nil, nil,
-            SODA.icon.icons_1_to_1(name .. "-reduction-mix", name .. "-ingot")
+            SODA.icon.icons_1_to_1(name .. "-reduction-mix", name .. "-ingot"), {allow_as_intermediate = false}
         )
     end
 )
 SODA.item.add("yellow-oxide", "b", "side-products", 100, {folders = "processing"})
-SODA.recipe.add("yellow-reduction", "smelting", "yellow-oxide", 4, "yellow-ore", 3, 3.2 / 2, nil, nil, nil, true, SODA.icon.icons_1_to_1_vertical("yellow-oxide", "yellow-ore"))
+SODA.recipe.add(
+    "yellow-reduction", "smelting", "yellow-oxide", 4, "yellow-ore", 3, 3.2 / 2, nil, nil, nil, true, SODA.icon.icons_1_to_1_vertical("yellow-oxide", "yellow-ore"), {allow_as_intermediate = false}
+)
 
 -- green
 
@@ -72,7 +75,7 @@ for_all_processable(
         SODA.recipe.add("purified-" .. name, "chemistry", {{name .. "-ore", 1}, {type = "fluid", name = "green-acid", amount = 25}}, nil, "purified-" .. name, 1, 3.2 / 4, nil, nil, values.tint)
         SODA.recipe.add(
             "purified-" .. name .. "-smelting", "smelting", "purified-" .. name, 4, name .. "-ingot", 1, 3.2, "ingots-purified", values.order, nil, nil,
-            SODA.icon.icons_1_to_1("purified-" .. name, name .. "-ingot")
+            SODA.icon.icons_1_to_1("purified-" .. name, name .. "-ingot"), {allow_as_intermediate = false}
         )
     end
 )
@@ -94,7 +97,7 @@ for _, m in pairs(SODA.mat.types.structure.list) do
     for _, n in pairs(SODA.mat.types.electronics.list) do
         SODA.recipe.add(
             "gravel-from-" .. m .. "-and-" .. n, "chemistry", {{"crushed-" .. m .. "-ore", 4}, {"crushed-" .. n .. "-ore", 4}}, nil, "stone", 4, 2, "gravel", SODA.MATS[m].order .. SODA.MATS[n].order,
-            SODA.color.lerp(SODA.MATS[m].tint, SODA.MATS[n].tint, 0.5), true, SODA.icon.icons_2_to_1("crushed-" .. m .. "-ore", "crushed-" .. n .. "-ore", "stone")
+            SODA.color.lerp(SODA.MATS[m].tint, SODA.MATS[n].tint, 0.5), true, SODA.icon.icons_2_to_1("crushed-" .. m .. "-ore", "crushed-" .. n .. "-ore", "stone"), {allow_as_intermediate = false}
         )
     end
 end

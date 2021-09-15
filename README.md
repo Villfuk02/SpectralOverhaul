@@ -27,24 +27,21 @@ In the late game, there would be a way to acquire one or even both remaining kin
 
 ## **TODO**
 
-balance power gen pollution  
-disable reprocessing as intermediates  
 **analyzer**  
 **logistics**  
 **production chain**  
 **tech**  
-**power gen**  
 **finish up game start**  
 tech science prereqs  
-make UV generator always consume?  
 reorder stuff  
-modulability  
-
+  
 ### **later**
 
 **MID GAME**  
 **LATE GAME**  
-**combat**
+**combat**  
+descriptions  
+modulability  
 
 ### **polish**
 

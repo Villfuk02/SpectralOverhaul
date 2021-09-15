@@ -1,6 +1,6 @@
 SODA.recipe = {}
 
-function SODA.recipe.add(name, category, input, amt, result, result_amt, time, subgroup, order, tint, show_products, icons)
+function SODA.recipe.add(name, category, input, amt, result, result_amt, time, subgroup, order, tint, show_products, icons, extras)
     if not category then
         category = name .. "-category"
         SODA.recipe.add_category(category)
@@ -16,6 +16,7 @@ function SODA.recipe.add(name, category, input, amt, result, result_amt, time, s
         localised_name = SODA.lang.cut_up(name),
         icons = icons,
         icon_size = icons and 64 or nil,
+        enabled = true, -- CHANGE TO FALSE
     }
     if result_amt then
         r.result = result
@@ -29,6 +30,11 @@ function SODA.recipe.add(name, category, input, amt, result, result_amt, time, s
     if show_products then
         r.show_amount_in_title = false
         r.always_show_products = true
+    end
+    if extras then
+        for key, value in pairs(extras) do
+            r[key] = value
+        end
     end
     data:extend{r}
 end

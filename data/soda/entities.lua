@@ -4,7 +4,7 @@ function SODA.entity.power(power_in_kW, no_drain)
     return (no_drain and power_in_kW or power_in_kW * 30 / 31) .. "kW"
 end
 
-local function add_machine(_type, name, order, subgroup, size, health, sound_type, sound_machine, rotatable, animates, to_add, extras)
+function SODA.entity.add_machine(_type, name, order, subgroup, size, health, sound_type, sound_machine, rotatable, animates, to_add, extras)
     if type(size) == "number" then
         size = {size, size}
     end
@@ -33,8 +33,12 @@ local function add_machine(_type, name, order, subgroup, size, health, sound_typ
         working_light_picture = _type == "reactor" and table.deepcopy(animation) or nil,
         working_sound = sound_type and table.deepcopy(data.raw[sound_type][sound_machine].working_sound) or nil,
         flags = {"placeable-player", "player-creation"},
+        on_animation = _type == "lab" and animation or nil,
+        off_animation = _type == "lab" and table.deepcopy(animation) or nil,
     }
-    if animates then
+    if _type == "lab" then
+        entity.off_animation.tint = {0.7, 0.7, 0.7, 1}
+    elseif animates then
         entity.idle_animation.tint = {0.7, 0.7, 0.7, 1}
     elseif _type == "reactor" then
         entity.picture.tint = {0.7, 0.7, 0.7, 1}
@@ -101,7 +105,7 @@ local function add_crafting_machine(furnace, name, order, subgroup, size, health
         match_animation_speed_to_activity = not furnace,
     }
 
-    add_machine(type_name, name, order, subgroup, size, health, sound_type, sound_machine, true, true, to_add, extras)
+    SODA.entity.add_machine(type_name, name, order, subgroup, size, health, sound_type, sound_machine, true, true, to_add, extras)
 end
 
 function SODA.entity.add_assembling_machine(name, order, subgroup, size, health, sound_type, sound_machine, crafting_categories, speed, power, energy_type, pollution, has_drain, module_slots, extras)
@@ -137,7 +141,7 @@ function SODA.entity.add_fluid_generator(name, order, subgroup, size, health, so
         burns_fluid = true,
         maximum_temperature = 1000,
     }
-    add_machine("generator", name, order, subgroup, size, health, sound_type, sound_machine, rotatable, false, to_add, extras)
+    SODA.entity.add_machine("generator", name, order, subgroup, size, health, sound_type, sound_machine, rotatable, false, to_add, extras)
 end
 
 function SODA.entity.add_burner_generator(name, order, subgroup, size, health, sound_type, sound_machine, fuel_type, power, pollution, effectivity, rotatable, extras)
@@ -148,7 +152,7 @@ function SODA.entity.add_burner_generator(name, order, subgroup, size, health, s
         max_power_output = SODA.entity.power(power, true),
     }
 
-    add_machine("burner-generator", name, order, subgroup, size, health, sound_type, sound_machine, rotatable, true, to_add, extras)
+    SODA.entity.add_machine("burner-generator", name, order, subgroup, size, health, sound_type, sound_machine, rotatable, true, to_add, extras)
 end
 
 function SODA.entity.generate_heat_connections(size)
@@ -190,5 +194,5 @@ function SODA.entity.add_reactor(
         scale_energy_usage = scale_energy_usage,
         neighbour_collision_increase = 0,
     }
-    add_machine("reactor", name, order, subgroup, size, health, sound_type, sound_machine, rotatable, false, to_add, extras)
+    SODA.entity.add_machine("reactor", name, order, subgroup, size, health, sound_type, sound_machine, rotatable, false, to_add, extras)
 end

@@ -14,9 +14,9 @@ function SODA.icon.make(type, name, size, path, mipmaps, tint, icons)
     data.raw[type][name] = tbl
 end
 
-local all_types_to_check = {"item", "fluid"}
+local all_types_to_check = {"item", "fluid", "capsule", "tool"}
 
-local function get_icon_specs(name)
+function SODA.icon.get_from(name)
     local p = nil
     for _, t in pairs(all_types_to_check) do
         if data.raw[t][name] then
@@ -37,14 +37,14 @@ local function get_icon_specs(name)
 end
 
 function SODA.icon.icons_1_to_1(from, to)
-    local layers = {get_icon_specs(to), get_icon_specs(from)}
+    local layers = {SODA.icon.get_from(to), SODA.icon.get_from(from)}
     layers[2].scale = 0.3
     layers[2].shift = {-8, -8}
     return layers
 end
 
 function SODA.icon.icons_1_to_1_vertical(from, to)
-    local layers = {{icon = SODA.path.graphics("almost-empty")}, get_icon_specs(to), get_icon_specs(from)}
+    local layers = {{icon = SODA.path.graphics("almost-empty")}, SODA.icon.get_from(to), SODA.icon.get_from(from)}
     layers[2].scale = 0.4
     layers[2].shift = {0, 6}
     layers[3].scale = 0.3
@@ -53,7 +53,7 @@ function SODA.icon.icons_1_to_1_vertical(from, to)
 end
 
 function SODA.icon.icons_2_to_1(from_left, from_right, to)
-    local layers = {{icon = SODA.path.graphics("almost-empty")}, get_icon_specs(to), get_icon_specs(from_right), get_icon_specs(from_left)}
+    local layers = {{icon = SODA.path.graphics("almost-empty")}, SODA.icon.get_from(to), SODA.icon.get_from(from_right), SODA.icon.get_from(from_left)}
     layers[2].scale = 0.4
     layers[2].shift = {0, 6}
     layers[3].scale = 0.3
@@ -64,7 +64,7 @@ function SODA.icon.icons_2_to_1(from_left, from_right, to)
 end
 
 function SODA.icon.icons_3_to_1(from_left, from_center, from_right, to)
-    local layers = {{icon = SODA.path.graphics("almost-empty")}, get_icon_specs(to), get_icon_specs(from_left), get_icon_specs(from_right), get_icon_specs(from_center)}
+    local layers = {{icon = SODA.path.graphics("almost-empty")}, SODA.icon.get_from(to), SODA.icon.get_from(from_left), SODA.icon.get_from(from_right), SODA.icon.get_from(from_center)}
     layers[2].scale = 0.4
     layers[2].shift = {0, 6}
     layers[3].scale = 0.25

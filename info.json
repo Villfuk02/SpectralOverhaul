@@ -5,7 +5,8 @@
     "author": "Villfuk02",
     "dependencies": [
         "base >= 1.1.39",
-        "BurnerOffshorePump"
+        "BurnerOffshorePump",
+        "discovery_tree"
     ],
     "description": "TODO",
     "factorio_version": "1.1"

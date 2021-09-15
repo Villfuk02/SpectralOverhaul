@@ -1,9 +1,12 @@
 SODA.tech = {}
 SODA.tech.pack_prefix = "science-pack-"
+SODA.tech.start_resources = {{"item", "wood", 40}, {"item", "stone", 40}, {"fluid", "water", 500}, {"fluid", "crude-oil", 100}} -- add catalysts
+for _, m in pairs(SODA.mat.list) do
+    table.insert(SODA.tech.start_resources, {"item", m .. "-ore", 10})
+end
 
 function SODA.tech.add(name, cost, prereqs, effects, icon_spec, upgrade, max_level)
     local tech = {type = "technology", name = name, upgrade = upgrade, max_level = max_level, prerequisites = prereqs, unit = cost}
-    tech = SODA.icon.add(tech, icon_spec.size or 256, SODA.path.icons((icon_spec.folders or "technology") .. "/" .. (icon_spec.name or name), icon_spec.vanilla), nil, icon_spec.tint)
 
     if effects then
         for key, value in pairs(effects) do
@@ -15,6 +18,9 @@ function SODA.tech.add(name, cost, prereqs, effects, icon_spec, upgrade, max_lev
     end
 
     data:extend{tech}
+    SODA.icon.make(
+        "technology", name, icon_spec.size or 256, SODA.path.icons((icon_spec.folders or "technology") .. "/" .. (icon_spec.name or name), icon_spec.vanilla), nil, icon_spec.tint, icon_spec.icons
+    )
 end
 
 local function two_type_packs(ingredients, k, prefix, type1, type2)

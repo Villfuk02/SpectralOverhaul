@@ -5,7 +5,7 @@ local group_name = "research"
 SODA.item.add_group(group_name, "r", SODA.path.graphics("technology/research-speed", true))
 
 -- SUBGROUPS
-local subgroups = {"production", "space", "packs"}
+local subgroups = {"production", "samples", "space", "packs"}
 local tier_order = {["1"] = 1, ["2"] = 2, M = 3, ["3"] = 4, ["4"] = 5, ["5"] = 6, ["6"] = 7}
 for key, value in pairs(subgroups) do
     SODA.item.add_subgroup(group_name .. "-" .. value, group_name, "r" .. key)

@@ -1,10 +1,10 @@
 SODA.item = {}
 
-function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures)
+function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures, override_type, extras)
     if icon_spec == nil then
         icon_spec = {}
     end
-    local item = {type = "item", name = name, order = order .. "[" .. name .. "]", stack_size = stack_size or 100, subgroup = subgroup, localised_name = SODA.lang.cut_up(name)}
+    local item = {type = override_type or "item", name = name, order = order .. "[" .. name .. "]", stack_size = stack_size or 100, subgroup = subgroup, localised_name = SODA.lang.cut_up(name)}
 
     if pictures then
         if icon_spec.icons then
@@ -22,9 +22,15 @@ function SODA.item.add(name, order, subgroup, stack_size, icon_spec, pictures)
             end
         end
     end
+    if extras then
+        for key, value in pairs(extras) do
+            item[key] = value
+        end
+    end
     data:extend{item}
     SODA.icon.make(
-        "item", name, 64, SODA.path.icons((icon_spec.folders and icon_spec.folders .. "/" or "") .. (icon_spec.name or name), icon_spec.vanilla), icon_spec.mipmaps, icon_spec.tint, icon_spec.icons
+        override_type or "item", name, 64, SODA.path.icons((icon_spec.folders and icon_spec.folders .. "/" or "") .. (icon_spec.name or name), icon_spec.vanilla), icon_spec.mipmaps, icon_spec.tint,
+        icon_spec.icons
     )
 end
 
