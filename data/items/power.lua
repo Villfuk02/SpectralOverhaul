@@ -58,9 +58,10 @@ SODA.recipe.add(
     "yellow-gas", "chemistry", {{"crushed-yellow-ore", 1}, {type = "fluid", name = "water", amount = 80}}, nil, {{type = "fluid", name = "yellow-gas", amount = 300, temperature = 107}}, nil, 20, nil,
     nil, SODA.MATS.yellow.tint
 )
+data.raw.recipe["yellow-gas"].emissions_multiplier = 0.5
 
 SODA.recipe.add(
     "steam-from-green-acid", "chemistry", {{type = "fluid", name = "green-acid", amount = 50}, {"stone", 2}}, nil, {{"slag", 1}, {type = "fluid", name = "steam", amount = 160, temperature = 105}},
     nil, 1.6, subgroup, "1j", SODA.MATS.green.tint, true, SODA.icon.icons_2_to_1("green-acid", "stone", "steam")
 )
-
+data.raw.recipe["steam-from-green-acid"].emissions_multiplier = 3

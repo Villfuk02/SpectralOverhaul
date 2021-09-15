@@ -7,15 +7,16 @@ SODA.entity.add_burner_generator("stirling-engine", "1", subgroup, 3.75, 400, "g
 
 -- purple
 SODA.entity.add_burner_generator("UV-generator", "2a", subgroup, 1.95, 200, nil, nil, "UV-emitter", 300, 0, true)
-SODA.entity.add_burner_generator("battery-discharger", "2b", subgroup, 1.6, 150, nil, nil, "battery", 200, 0, true)
+SODA.entity.add_burner_generator("battery-discharger", "2b", subgroup, 1.6, 150, nil, nil, "battery", 200, 1.25, true)
 
 -- orange
 local per_orange_line = 440
-SODA.entity.add_reactor("heat-reactor", "2c", subgroup, 2.9, 300, "boiler", "boiler", {"heat-cell", "chemical"}, 320, 0.8, 5, 0.125, true, 315, 2000, false)
+SODA.entity.add_reactor("heat-reactor", "2c", subgroup, 2.9, 300, "boiler", "boiler", {"heat-cell", "chemical"}, 320, 0.8, 3, 0.125, true, 315, 2000, false)
 SODA.fluid.add("heat-joule", "z", "fluid", SODA.MATS.orange.tint, {folders = "fluids"}, false)
 data.raw.fluid["heat-joule"].fuel_value = "1J"
 data.raw.fluid["heat-joule"].default_temperature = 1
 data.raw.fluid["heat-joule"].gas_temperature = 0
+data.raw.fluid["heat-joule"].hidden = true
 SODA.recipe.add("heat-joule", nil, {}, nil, {{type = "fluid", name = "heat-joule", amount = per_orange_line * 50}}, nil, 0.1)
 data.raw.recipe["heat-joule"].hidden = true
 data.raw.recipe["heat-joule"].hide_from_stats = true
@@ -42,7 +43,7 @@ SODA.entity.add_fluid_generator(
 
 -- red
 SODA.entity.add_assembling_machine(
-    "combustion-chamber", "2f", subgroup, 1.8, 200, "furnace", "steel-furnace", "hot-air", 1, 240, "chemical", 5, false, 0, {
+    "combustion-chamber", "2f", subgroup, 1.8, 200, "furnace", "steel-furnace", "hot-air", 1, 240, "chemical", 4, false, 0, {
         show_recipe_icon = false,
         fluid_boxes = {
             {
