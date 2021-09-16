@@ -6,3 +6,5 @@ require "data.entities.miners"
 require "data.entities.processing"
 -- POWER GEN
 require "data.entities.power"
+-- COMPONENTS
+require "data.entities.components"

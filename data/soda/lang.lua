@@ -1,8 +1,8 @@
 SODA.lang = {}
 
-local capture = {"black-ore", "yellow-ore", "green-ore", "stone-analysis", "stone-sample"}
+local capture = {"black-ore", "yellow-ore", "green-ore", "stone-analysis", "stone-sample", "lathe-mill", "purple-sensor", "red-spring", "red-memory"}
 local capture_right = {"ingot"}
-local capture_left = {}
+local capture_left = {"circuit"}
 for _, value in pairs(capture_left) do
     table.insert(capture, "[^-]+-" .. value)
 end

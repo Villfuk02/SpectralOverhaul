@@ -39,7 +39,17 @@ function SODA.entity.add_machine(_type, name, order, subgroup, size, health, sou
     if _type == "lab" then
         entity.off_animation.tint = {0.7, 0.7, 0.7, 1}
     elseif animates then
-        entity.idle_animation.tint = {0.7, 0.7, 0.7, 1}
+        if rotatable and bounds[1] ~= bounds[2] then
+            local animation_rotated = {filename = SODA.path.entities("machines/" .. name .. "-rotated"), width = bounds[2] * 64, height = bounds[1] * 64, scale = size[1] / bounds[1]}
+            entity.animation = {north = animation, east = animation_rotated, south = animation, west = animation_rotated}
+            local idle_animation = table.deepcopy(animation)
+            local idle_animation_rotated = table.deepcopy(animation_rotated)
+            idle_animation.tint = {0.7, 0.7, 0.7, 1}
+            idle_animation_rotated.tint = {0.7, 0.7, 0.7, 1}
+            entity.idle_animation = {north = idle_animation, east = idle_animation_rotated, south = idle_animation, west = idle_animation_rotated}
+        else
+            entity.idle_animation.tint = {0.7, 0.7, 0.7, 1}
+        end
     elseif _type == "reactor" then
         entity.picture.tint = {0.7, 0.7, 0.7, 1}
     end

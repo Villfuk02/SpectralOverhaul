@@ -27,9 +27,8 @@ In the late game, there would be a way to acquire one or even both remaining kin
 
 ## **TODO**
 
-**analyzer**  
 **logistics**  
-**production chain**  
+**ingredient generator**  
 **tech**  
 **finish up game start**  
 tech science prereqs  

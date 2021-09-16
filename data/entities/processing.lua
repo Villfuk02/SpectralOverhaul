@@ -15,9 +15,12 @@ SODA.entity.add_assembling_machine("blast-furnace", "d1", "production-machine", 
 
 -- CHEM PLANT
 
+SODA.recipe.add_category("dry-mixing")
+
 data.raw["assembling-machine"]["chemical-plant"].energy_usage = SODA.entity.power(125)
 data.raw["assembling-machine"]["chemical-plant"].module_specification.module_slots = 0
 data.raw["assembling-machine"]["chemical-plant"].energy_source.emissions_per_minute = 5
+data.raw["assembling-machine"]["chemical-plant"].crafting_categories = {"chemistry", "dry-mixing"}
 
 -- MID
 -- LATE
