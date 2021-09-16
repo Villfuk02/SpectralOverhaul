@@ -5,7 +5,7 @@ SODA.item.add_subgroup(subgroup, "production", "m")
 -- azure
 SODA.recipe.add_category("cutting")
 SODA.recipe.add_category("cutting-1")
-SODA.entity.add_furnace("cutter", "1a", subgroup, {3.6, 1.9}, 300, "furnace", "electric-furnace", {"cutting", "cutting-1"}, 0.5, 90, true, 3, true, 0, 1)
+SODA.entity.add_assembling_machine("cutter", "1a", subgroup, {3.6, 1.9}, 300, "furnace", "electric-furnace", {"cutting", "cutting-1"}, 0.5, 90, true, 3, true, 0)
 
 SODA.recipe.add_category("milling")
 SODA.recipe.add_category("milling-1")
