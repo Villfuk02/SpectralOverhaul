@@ -5,8 +5,10 @@
     "author": "Villfuk02",
     "dependencies": [
         "base >= 1.1.39",
-        "BurnerOffshorePump",
-        "discovery_tree"
+        "BurnerOffshorePump >= 0.1.10",
+        "discovery_tree >= 1.0.3",
+        "lob >= 1.1.5",
+        "all_belts >= 1.0.4"
     ],
     "description": "TODO",
     "factorio_version": "1.1"

@@ -1,7 +1,7 @@
 SODA.constants = {}
 
 -- BELT SPEEDS
-SODA.constants.belt_speeds = {7.5, 15, 30, 60, 120}
+SODA.constants.belt_speeds = {7.5, 15, 30, 45, 180}
 
 -- ORE PROCESSING
 SODA.constants.processing = {}

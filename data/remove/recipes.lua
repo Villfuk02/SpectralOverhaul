@@ -15,7 +15,7 @@ for b, _ in pairs(data.raw.module) do
 end
 
 for b, _ in pairs(data.raw.technology) do
-    if b == "construction-robotics" or b == "personal-roboport-equipment" or b == "exoskeleton-equipment" or b == "oil-processing" then
+    if b == "construction-robotics" or b == "personal-roboport-equipment" or b == "exoskeleton-equipment" or b == "oil-processing" or b == "miniloader" then
         data.raw.technology[b].prerequisites = nil
         data.raw.technology[b].effects = nil
     else

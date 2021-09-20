@@ -1,0 +1,1 @@
+require "control.logistics.inserters"

@@ -8,3 +8,5 @@ require "data.entities.processing"
 require "data.entities.power"
 -- COMPONENTS
 require "data.entities.components"
+-- LOGISTICS
+require "data.entities.logistics.logistics"

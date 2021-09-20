@@ -29,10 +29,19 @@ In the late game, there would be a way to acquire one or even both remaining kin
 
 **logistics**  
 **ingredient generator**  
+**all recipes**
 **tech**  
 **finish up game start**  
-tech science prereqs  
+fix miniloader throughputs  
+balance throughputs  
+balance logistic power usage  
+tech auto-prereqs  
 reorder stuff  
+hide ugly items  
+hide remnant techs  
+heat generator via composite entities  
+thermoelectric generator via composite entities  
+change default keybinds  
   
 ### **later**
 
@@ -52,3 +61,8 @@ hide unused items
 colorblindness  
 space exploration  
 errors ("smelting")
+
+## I can't give credit
+
+Dr_pepper - inserter configuration  
+notnotmelon - thrower inserters  
