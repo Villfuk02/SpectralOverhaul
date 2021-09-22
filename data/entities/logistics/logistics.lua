@@ -1,2 +1,2 @@
 require "data.entities.logistics.inserters"
--- require "data.entities.logistics.loaders"
+require "data.entities.logistics.loaders"

@@ -15,3 +15,21 @@ platform.minable = {mining_time = 0.1, result = "transport-platform"}
 platform.placeable_by = {item = "transport-platform", count = 1}
 data:extend{platform}
 SODA.item.add("transport-platform", "z", "inserter", 100, {folders = "logistics"}, nil, nil, {place_result = "transport-platform"})
+
+data.raw.inserter["inserter"].energy_per_movement = "0.25kJ"
+data.raw.inserter["inserter"].energy_per_rotation = "0.25kJ"
+data.raw.inserter["inserter"].energy_source = {type = "electric", usage_priority = "secondary-input"}
+
+data.raw.inserter["fast-inserter"].energy_per_movement = "0.35kJ"
+data.raw.inserter["fast-inserter"].energy_per_rotation = "0.35kJ"
+data.raw.inserter["fast-inserter"].energy_source = {type = "electric", usage_priority = "secondary-input"}
+
+data.raw.inserter["filter-inserter"].energy_per_movement = "0.4kJ"
+data.raw.inserter["filter-inserter"].energy_per_rotation = "0.4kJ"
+data.raw.inserter["filter-inserter"].energy_source = {type = "electric", usage_priority = "secondary-input"}
+
+data.raw.inserter["thrower-inserter"].energy_per_movement = "2kJ"
+data.raw.inserter["thrower-inserter"].energy_per_rotation = "2kJ"
+data.raw.inserter["thrower-inserter"].energy_source = {type = "electric", usage_priority = "secondary-input"}
+data.raw.inserter["thrower-inserter"].stack_size_bonus = 6
+
