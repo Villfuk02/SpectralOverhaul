@@ -27,14 +27,11 @@ In the late game, there would be a way to acquire one or even both remaining kin
 
 ## **TODO**
 
-**logistics**  
-**ingredient generator**  
-**all recipes**
+fabricator  
+**pneumatic pipes**  
+**recipes**  
 **tech**  
 **finish up game start**  
-fix miniloader throughputs  
-balance throughputs  
-balance logistic power usage  
 tech auto-prereqs  
 reorder stuff  
 hide ugly items  

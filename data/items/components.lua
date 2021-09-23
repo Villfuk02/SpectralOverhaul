@@ -45,10 +45,10 @@ for_all(
     end
 )
 
--- beams 16s
+-- beams 8s
 for_all(
     SODA.mat.types.structure.list, function(mat)
-        SODA.recipe.add_for_each_str_mat(mat, "beam", {"cutting-1", "pressing-1", "hot-rolling-1"}, {{mat .. "-ingot", 1}, {mat .. "-plate", 2}}, 1, 16, "2", structure_subgroup, 100)
+        SODA.recipe.add_for_each_str_mat(mat, "beam", {"cutting-1", "pressing-1", "hot-rolling-1"}, {{mat .. "-ingot", 1}, {mat .. "-plate", 2}}, 2, 16, "2", structure_subgroup, 100)
     end
 )
 
@@ -66,22 +66,20 @@ SODA.recipe.add("pink-tube", "hot-rolling-1", "pink-plate", 1, "pink-tube", 1, 8
 -- mechanism specials
 -- lime
 SODA.recipe.add_for_each_str_mat("lime", "transmission-belts", {"cutting", "pressing", "hot-rolling"}, {{"lime-plate", 1}}, 4, 2, "a", mechanism_subgroup, 200) -- 1m
-for_all(
-    {"lime", "white"}, function(mat)
-        SODA.recipe.add_for_each_str_mat(mat, "spring", {"milling", "cold-rolling", "hot-rolling"}, {{mat .. "-plate", 1}}, 2, 2, "b", mechanism_subgroup, 200) -- 2m
-    end
-)
-SODA.recipe.add_for_each_str_mat("lime", "joints", {"milling-1", "pressing-1", "casting-1"}, {{"lime-ingot", 1}, {"MAT-rod", 2}}, 8, 6, "c", mechanism_subgroup, 200) -- 1m + 0.5s
+SODA.recipe.add_for_each_str_mat("lime", "joints", {"milling", "pressing", "casting"}, {{"lime-ingot", 1}, {"MAT-rod", 2}}, 8, 6, "b", mechanism_subgroup, 200) -- 1m + 0.5s
+SODA.recipe.add_for_each_str_mat("lime", "spring", {"milling-1", "cold-rolling-1", "hot-rolling-1"}, {{"lime-plate", 1}}, 2, 2, "c", mechanism_subgroup, 200) -- 2m
+
 -- blue
 SODA.recipe.add_for_each_str_mat("blue", "gears", {"milling", "pressing", "casting"}, {{"blue-ingot", 1}}, 4, 4, "d", mechanism_subgroup, 200) -- 2m
 for_all(
     {"blue", "white"}, function(mat)
-        SODA.recipe.add_for_each_str_mat(mat, "piston", "assembling", {{mat .. "-plate", 1}, {"MAT-rod", 1}}, 1, 3, "e", mechanism_subgroup, 100) -- 2m + 1s
+        SODA.recipe.add_for_each_str_mat(mat, "piston", "assembling", {{mat .. "-plate", 1}, {"MAT-rod", 1}}, 2, 3, "e", mechanism_subgroup, 100) -- 2m + 1s
     end
 )
 SODA.recipe.add_for_each_str_mat("blue", "gaskets", {"milling-1", "pressing-1", "casting-1"}, {{"blue-plate", 1}}, 4, 2, "f", mechanism_subgroup, 200) -- 1m
 -- white
-SODA.recipe.add_for_each_str_mat("white", "tube", {"milling-1", "cold-rolling-1", "hot-rolling-1"}, {{"white-plate", 1}}, 2, 2, "g", mechanism_subgroup, 200) -- 2m
+SODA.recipe.add_for_each_str_mat("white", "tube", {"milling", "cold-rolling", "hot-rolling"}, {{"white-plate", 1}}, 4, 2, "g", mechanism_subgroup, 200) -- 1m
+SODA.recipe.add_for_each_str_mat("white", "spring", {"milling-1", "cold-rolling-1", "hot-rolling-1"}, {{"white-tube", 1}}, 1, 2, "h", mechanism_subgroup, 200) -- 2m
 
 -- electronic specials
 for_all(
@@ -92,7 +90,7 @@ for_all(
 -- purple
 for_all(
     {"purple", "orange"}, function(mat)
-        SODA.recipe.add_for_each_str_mat(mat, "foil", {"cutting-1", "pressing-1", "casting-1"}, {{mat .. "-plate", 1}}, 4, 2, "b", electronic_subgroup, 200) -- 1e
+        SODA.recipe.add_for_each_str_mat(mat, "foil", {"cutting", "pressing", "casting"}, {{mat .. "-plate", 1}}, 4, 2, "b", electronic_subgroup, 200) -- 1e
     end
 )
 SODA.recipe.add_for_each_mech_mat("purple", "panel", "assembling-1", {{"purple-foil", 2}, {"MAT-plate", 1}}, 2, 3, "c", electronic_subgroup, 100) -- 1e + 2m
@@ -101,6 +99,12 @@ SODA.recipe.add_for_each_str_mat("purple", "sensor", "assembling-1", {{"purple-p
 SODA.recipe.add_for_each_str_mat("orange", "electronic-components", "assembling-1", {{"orange-cable", 3}, {"MAT-rod", 1}}, 4, 2.5, "e", electronic_subgroup, 200) -- 0.75e + 0.5s
 SODA.recipe.add_for_each_mech_mat("orange", "circuit", "assembling-1", {{"orange-electronic-components", 8}, {"orange-foil", 2}, {"MAT-plate", 1}}, 4, 16, "f", electronic_subgroup, 100) -- 2e + 1m + 1s
 -- red
-SODA.recipe.add_for_each_str_mat("red", "spring", {"milling-1", "cold-rolling-1", "hot-rolling-1"}, {{"red-cable", 2}}, 1, 1, "g", electronic_subgroup, 200) -- 2e
+SODA.recipe.add_for_each_str_mat("red", "spring", {"milling", "cold-rolling", "hot-rolling"}, {{"red-cable", 2}}, 1, 1, "g", electronic_subgroup, 200) -- 2e
 SODA.recipe.add_for_each_str_mat("red", "magnet", "assembling-1", {{"red-spring", 1}, {"MAT-rod", 1}}, 1, 2, "h", electronic_subgroup, 100) -- 2e + 2s
 SODA.recipe.add_for_each_mech_mat("red", "memory", "assembling-1", {{"red-magnet", 4}, {"MAT-ingot", 1}, {"red-cable", 8}}, 8, 32, "i", electronic_subgroup, 100) -- 2e + 1m + 1s
+
+-- MOTOR
+local simple_subgroup = "simple-intermediates"
+SODA.item.add_subgroup(simple_subgroup, group_name, "f")
+SODA.item.add("simple-motor", "0", simple_subgroup, 100, {folders = "intermediates"})
+SODA.recipe.add_from_prefabs({"mechanisms", "electronics"}, "assembling", {{SODA.RIP.cable_1e, 4}, {SODA.RIP.mechanism_0_4m_1s, 1}}, "simple-motor", 2, 4) -- 2e + 2m + 0.5s

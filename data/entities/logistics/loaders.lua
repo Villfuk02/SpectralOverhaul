@@ -36,3 +36,9 @@ for key, v in pairs(miniloader_balance) do
     data.raw.inserter[key].energy_per_rotation = pow .. "kJ"
 end
 
+-- START
+SODA.recipe.add_from_prefabs(nil, "assembling", {{"lime-plate", 1}, {"lime-joints", 2}}, "slow-transport-belt", 6, 1) -- 0.17s 1m (1.17)
+SODA.recipe.add_from_prefabs({"structure"}, "assembling", {{"slow-transport-belt", 4}, {SODA.RIP.plate_4s, 1}}, "slow-underground-belt", 2, 1) -- (2x) 4.67s 4m (8.67)
+SODA.recipe.add_from_prefabs({"electronics"}, "assembling", {{"slow-transport-belt", 2}, {SODA.RIP.cable_1e, 4}, {"lime-joints", 4}, {"simple-motor", 1}}, "slow-splitter", 1, 1) -- 2.83s 6m 6e (14.83)
+
+SODA.recipe.add_from_prefabs({"structure"}, "assembling", {{"slow-transport-belt", 1}, {"simple-motor", 2}, {SODA.RIP.plate_4s, 1}}, "simple-miniloader", 2, 0.5) -- 2.58s 2.5m 2e (7.08)
