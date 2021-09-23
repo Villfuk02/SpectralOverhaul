@@ -16,7 +16,7 @@ function SODA.recipe.add(name, category, input, amt, result, result_amt, time, s
         localised_name = SODA.lang.cut_up(name),
         icons = icons,
         icon_size = icons and 64 or nil,
-        enabled = true, -- CHANGE TO FALSE
+        enabled = false,
     }
     if result_amt then
         r.result = result

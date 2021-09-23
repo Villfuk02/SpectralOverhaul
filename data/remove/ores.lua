@@ -9,3 +9,5 @@ for _, key in pairs(blacklist_autoplace) do
         end
     end
 end
+
+data.raw["simple-entity"]["rock-huge"].minable = {mining_particle = "stone-particle", mining_time = 3, results = {{amount_max = 72, amount_min = 24, name = "stone"}}}

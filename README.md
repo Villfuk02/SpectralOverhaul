@@ -27,11 +27,11 @@ In the late game, there would be a way to acquire one or even both remaining kin
 
 ## **TODO**
 
-fabricator  
 **pneumatic pipes**  
 **recipes**  
 **tech**  
 **finish up game start**  
+lock settings  
 tech auto-prereqs  
 reorder stuff  
 hide ugly items  

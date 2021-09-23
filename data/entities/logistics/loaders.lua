@@ -42,3 +42,12 @@ SODA.recipe.add_from_prefabs({"structure"}, "assembling", {{"slow-transport-belt
 SODA.recipe.add_from_prefabs({"electronics"}, "assembling", {{"slow-transport-belt", 2}, {SODA.RIP.cable_1e, 4}, {"lime-joints", 4}, {"simple-motor", 1}}, "slow-splitter", 1, 1) -- 2.83s 6m 6e (14.83)
 
 SODA.recipe.add_from_prefabs({"structure"}, "assembling", {{"slow-transport-belt", 1}, {"simple-motor", 2}, {SODA.RIP.plate_4s, 1}}, "simple-miniloader", 2, 0.5) -- 2.58s 2.5m 2e (7.08)
+
+-- EARLY
+SODA.recipe.add_from_prefabs(nil, "assembling", {{"slow-transport-belt", 3}, {"lime-transmission-belts", 2}}, "transport-belt", 1, 0.5) -- 0.5s 5m (5.5)
+SODA.recipe.add_from_prefabs({"structure"}, "assembling", {{"transport-belt", 6}, {SODA.RIP.plate_4s, 4}}, "underground-belt", 2, 1) -- (2x) 19s 30m (49)
+SODA.recipe.add_from_prefabs({"electronics"}, "assembling", {{"transport-belt", 2}, {SODA.RIP.electronics_1_2e_1m_1s, 2}, {"lime-spring", 4}, {"simple-motor", 2}}, "splitter", 1, 1) -- 4 24 8 (36)
+
+SODA.recipe.add_from_prefabs(
+    {"structure", {"lime"}}, "assembling", {{"slow-transport-belt", 1}, {"simple-motor", 4}, {SODA.RIP.plate_4s, 2}, {SODA.RIP.mechanism_1_6m_1s, 2}}, "slow-miniloader", 1, 0.5
+) -- 12.17 21 8 (41.17)
