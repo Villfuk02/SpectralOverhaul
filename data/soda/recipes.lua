@@ -1,4 +1,5 @@
 SODA.recipe = {}
+SODA.recipe.colored_list = {}
 
 function SODA.recipe.add(name, category, input, amt, result, result_amt, time, subgroup, order, tint, show_products, icons, extras)
     if not category then
@@ -68,6 +69,10 @@ function SODA.recipe.add_for_each_str_mat(color, name, category, inputs, result_
         SODA.recipe.add(
             color_name .. name .. "-" .. mat, category[i], inputs[i], nil, color_name .. name, result_amt, time[i], nil, nil, nil, nil, nil, {localised_name = SODA.lang.cut_up(color_name .. name)}
         )
+        if not SODA.recipe.colored_list[name] then
+            SODA.recipe.colored_list[name] = {}
+        end
+        SODA.recipe.colored_list[name][mat .. "-" .. color_name] = color_name .. name .. "-" .. mat
     end
 end
 
@@ -90,6 +95,10 @@ function SODA.recipe.add_for_each_mech_mat(color, name, category, inputs, result
         SODA.recipe.add(
             color_name .. name .. "-" .. mat, category, inputs[i], nil, color_name .. name, result_amt, time, nil, nil, nil, nil, nil, {localised_name = SODA.lang.cut_up(color_name .. name)}
         )
+        if not SODA.recipe.colored_list[name] then
+            SODA.recipe.colored_list[name] = {}
+        end
+        SODA.recipe.colored_list[name][mat .. "-" .. color_name] = color_name .. name .. "-" .. mat
     end
 end
 
@@ -98,16 +107,22 @@ SODA.RIP = {
     rod_2s = {structure = {{{"azure-rod", 1}}, {{"silver-rod", 1}}, {{"pink-rod", 1}}}},
     structure_1_16s = {structure = {{{"azure-beam", 1}, {"azure-plate", 2}}, {{"silver-beam", 1}, {"silver-plate", 2}}, {{"pink-beam", 1}, {"pink-plate", 2}}}},
     cable_1e = {electronics = {{{"purple-cable", 1}}, {{"orange-cable", 1}}, {{"red-cable", 1}}}},
-    mechanism_transmission_2m = {mechanisms = {{{"lime-transmission-belts", 2}}, {{"blue-gears", 1}}, {{"white-tube", 2}}}},
-    mechanism_0_4m_1s = {mechanisms = {{{"lime-transmission-belts", 2}, {"lime-joints", 2}}, {{"blue-gears", 1}, {"blue-piston", 1}}, {{"white-piston", 1}, {"white-tube", 2}}}},
+    mechanism_transmission_2m = {mechanisms = {{{"lime-transmission-belts", 2}}, {{"blue-gears", 1}}, {{"white-tubes", 2}}}},
+    mechanism_0_4m_1s = {mechanisms = {{{"lime-transmission-belts", 2}, {"lime-joints", 2}}, {{"blue-gears", 1}, {"blue-piston", 1}}, {{"white-piston", 1}, {"white-tubes", 2}}}},
     mechanism_1_6m_1s = {
         mechanisms = {
             {{"lime-transmission-belts", 2}, {"lime-joints", 2}, {"lime-spring", 1}}, {{"blue-gears", 1}, {"blue-piston", 1}, {"blue-gaskets", 2}},
-            {{"white-piston", 1}, {"white-tube", 2}, {"white-spring", 1}},
+            {{"white-piston", 1}, {"white-tubes", 2}, {"white-spring", 1}},
         },
     },
-    electronics_0_2e = {electronics = {{{"purple-foil", 2}}, {{"orange-foil", 2}}, {{"red-spring", 1}}}},
+    electronics_0_2e = {electronics = {{{"purple-foil", 2}}, {{"orange-foil", 2}}, {{"red-coil", 1}}}},
     electronics_1_2e_1m_1s = {electronics = {{{"purple-sensor", 1}}, {{"orange-circuit", 1}}, {{"red-memory", 1}}}},
+    mechanism_pack_ingredients = {mechanisms = {{{"simple-miniloader", 1}, {"slow-transport-belt", 1}}, {}, {{"inserter", 1}, {"transport-platform", 3}}}},
+    fuel_unit_2f = {fuel = {{{"black-ore", 1}}, {{"yellow-ore", 1}}, {{"green-ore", 1}}}},
+    ore_2s = {structure = {{{"azure-ore", 1}}, {{"silver-ore", 1}}, {{"pink-ore", 1}}}},
+    crushed_ore_1f = {fuel = {{{"crushed-black-ore", 1}}, {{"crushed-yellow-ore", 1}}, {{"crushed-green-ore", 1}}}},
+    beam_8s = {structure = {{{"azure-beam", 1}}, {{"silver-beam", 1}}, {{"pink-beam", 1}}}},
+
 }
 
 if not SODA.RIP.done then
@@ -127,71 +142,65 @@ if not SODA.RIP.done then
     SODA.RIP.done = true
 end
 
-function SODA.recipe.add_from_prefabs(materials, categories, ingredients, result, amt, time, fluids)
-    local combinations = {""}
-    if materials ~= nil then
-        for i, value in pairs(materials) do
-            local new_combinations = {}
-            if type(value) == "string" then
-                value = SODA.mat.types[value].list
-            end
-            for _, v in pairs(value) do
-                for _, c in pairs(combinations) do
-                    table.insert(new_combinations, c .. v .. "-")
-                end
-            end
-            combinations = new_combinations
-        end
-    end
-    for _, c in pairs(combinations) do
-        local category = "NOT FOUND"
-        if type(categories) == "string" then
-            category = categories
-        else
-            for key, value in pairs(categories) do
-                if string.find(c, SODA.mat.types.structure.list[key], nil, true) then
-                    category = value
-                    break
-                end
-            end
-        end
-        local parsed_ingredients = {}
-        for _, value in pairs(ingredients) do
-            if type(value[1]) == "string" then
-                if parsed_ingredients[value[1]] then
-                    parsed_ingredients[value[1]] = parsed_ingredients[value[1]] + value[2]
-                else
-                    parsed_ingredients[value[1]] = value[2]
-                end
+function SODA.recipe.add_from_prefabs(materials, categories, ingredients, result, amt, time, fluids, different_results)
+    SODA.mat.for_all_combinations(
+        materials, function(combination, c)
+            local category = "NONEXISTENT CATEGORY"
+            if type(categories) == "string" then
+                category = categories
             else
-                local p = {}
-                for k, v in pairs(value[1]) do
-                    if string.find(c, k) then
-                        p = table.deepcopy(v)
+                for key, value in pairs(categories) do
+                    if string.find(c, SODA.mat.types.structure.list[key], nil, true) then
+                        category = value
                         break
                     end
                 end
-                for k, v in pairs(p) do
-                    p[k][2] = v[2] * value[2]
-                end
-                for _, v in pairs(p) do
-                    if parsed_ingredients[v[1]] then
-                        parsed_ingredients[v[1]] = parsed_ingredients[v[1]] + v[2]
+            end
+            local parsed_ingredients = {}
+            for _, value in pairs(ingredients) do
+                if type(value[1]) == "string" then
+                    if parsed_ingredients[value[1]] then
+                        parsed_ingredients[value[1]] = parsed_ingredients[value[1]] + value[2]
                     else
-                        parsed_ingredients[v[1]] = v[2]
+                        parsed_ingredients[value[1]] = value[2]
+                    end
+                else
+                    local p = {}
+                    for k, v in pairs(value[1]) do
+                        if string.find(c, k) then
+                            p = table.deepcopy(v)
+                            break
+                        end
+                    end
+                    for k, v in pairs(p) do
+                        p[k][2] = v[2] * value[2]
+                    end
+                    for _, v in pairs(p) do
+                        if parsed_ingredients[v[1]] then
+                            parsed_ingredients[v[1]] = parsed_ingredients[v[1]] + v[2]
+                        else
+                            parsed_ingredients[v[1]] = v[2]
+                        end
                     end
                 end
             end
-        end
-        local final_ingredients = {}
-        for key, value in pairs(parsed_ingredients) do
-            table.insert(final_ingredients, {key, value})
-        end
-        if fluids then
-            for _, value in pairs(fluids) do
-                table.insert(final_ingredients, {type = "fluid", name = value[1], count = value[2]})
+            local final_ingredients = {}
+            for key, value in pairs(parsed_ingredients) do
+                table.insert(final_ingredients, {key, value})
             end
+            if fluids then
+                for _, value in pairs(fluids) do
+                    table.insert(final_ingredients, {type = "fluid", name = value[1], count = value[2]})
+                end
+            end
+            SODA.recipe.add(
+                c .. result, category, final_ingredients, nil, different_results and (c .. result) or result, amt, time, nil, nil, nil, nil, nil,
+                {localised_name = (not different_results) and SODA.lang.cut_up(result) or nil}
+            )
+            if not SODA.recipe.colored_list[result] then
+                SODA.recipe.colored_list[result] = {}
+            end
+            SODA.recipe.colored_list[result][c] = c .. result
         end
-        SODA.recipe.add(c .. result, category, final_ingredients, nil, result, amt, time, nil, nil, nil, nil, nil, {localised_name = SODA.lang.cut_up(result)})
-    end
+    )
 end

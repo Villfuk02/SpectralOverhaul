@@ -39,10 +39,19 @@ for i, r in pairs(SODA.tech.start_resources) do
     )
     SODA.recipe.add(
         resource .. "-from-sample", "sample-extraction", resource .. "-sample", 20, ingredients, nil, 1, "research-samples", i, nil, true,
-        SODA.icon.icons_1_to_1_vertical(resource .. "-sample", resource), {hide_from_player_crafting = true, allow_as_intermediate = false, enabled = true}
+        SODA.icon.icons_1_to_1_vertical(resource .. "-sample", resource), {hide_from_player_crafting = true, allow_as_intermediate = false}
     )
-    SODA.tech.add(resource .. "-analysis", {count = 100, time = 0.1, ingredients = {{resource .. "-sample", 1}}}, nil, {}, {icons = {SODA.icon.get_from(resource)}, size = 64})
-    data.raw.technology[resource .. "-analysis"].localised_name = SODA.lang.cut_up(resource .. "-analysis")
+    local color = nil
+    for _, m in pairs(SODA.mat.metals) do
+        if string.find(resource, m) then
+            color = m
+            break
+        end
+    end
+    SODA.tech.add(
+        "", resource .. "-analysis", {count = 100, time = 0.1, ingredients = {{resource .. "-sample", 1}}}, nil, {resource .. "-from-sample", color and color .. "-ingot" or nil},
+        {icons = {SODA.icon.get_from(resource)}, size = 64}
+    )
     table.insert(samples, resource .. "-sample")
 end
 SODA.entity.add_machine(

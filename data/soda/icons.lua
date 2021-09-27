@@ -76,3 +76,38 @@ function SODA.icon.icons_3_to_1(from_left, from_center, from_right, to)
     return layers
 end
 
+function SODA.icon.any_number(items)
+    local size = math.ceil(math.sqrt(#items))
+    local layers = {{icon = SODA.path.graphics("almost-empty")}}
+    local rows = math.ceil(#items / size)
+    local scale = 1 / size
+    for y = 1, rows, 1 do
+        local columns = y == rows and #items - (rows - 1) * size or size
+        for x = 1, columns, 1 do
+            local i = SODA.icon.get_from(items[y * size + x - size])
+            i.scale = scale
+            i.shift = {64 / size * (x - (columns + 1) / 2), 64 / size * (y - (rows + 1) / 2)}
+            table.insert(layers, i)
+        end
+    end
+    return layers
+end
+
+function SODA.icon.get_icons_from(name)
+    local p = nil
+    for _, t in pairs(all_types_to_check) do
+        if data.raw[t][name] then
+            p = data.raw[t][name]
+            break
+        end
+    end
+    if p == nil then
+        error("Prototype to copy icon from was not found: " .. tostring(name))
+    end
+    local icons = p.icons
+    if not icons then
+        icons = {{icon = p.icon}}
+    end
+    return table.deepcopy(icons)
+end
+

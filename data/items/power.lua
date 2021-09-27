@@ -4,6 +4,7 @@ SODA.item.add_subgroup(subgroup, "intermediate-products", "p")
 
 -- purple
 SODA.item.add("UV-emitter", "1a", subgroup, 100, {folders = "intermediates"})
+SODA.recipe.add("UV-emitter", "chemistry", "purple-ingot", 1, "UV-emitter", 4, 8)
 SODA.item.add("activated-UV-emitter", "1b", subgroup, 10, {folders = "intermediates"})
 SODA.recipe.add("activated-UV-emitter", "smelting", "UV-emitter", 1, "activated-UV-emitter", 1, 8)
 SODA.item.add_fuel_category("UV-emitter")
@@ -37,8 +38,6 @@ SODA.recipe.add(
     "heat-cell-from-yellow", "chemistry", {{"yellow-ore", 2}, {type = "fluid", name = "water", amount = 750}}, nil, "heat-cell", 1, 20, subgroup, "1g1", SODA.MATS.yellow.tint, false,
     SODA.icon.icons_1_to_1("yellow-ore", "heat-cell")
 )
-SODA.item.add("crushed-green-ore", "1c", "side-products", 100, {folders = "processing", name = "crushed-ore", tint = SODA.MATS.green.tint})
-SODA.recipe.add("crushed-green-ore", "crushing", "green-ore", 1, "crushed-green-ore", 2, 0.8)
 SODA.recipe.add("heat-cell-from-green", "chemistry", "crushed-green-ore", 4, "heat-cell", 1, 25, subgroup, "1g2", SODA.MATS.green.tint, false, SODA.icon.icons_1_to_1("crushed-green-ore", "heat-cell"))
 
 -- red
@@ -46,8 +45,6 @@ SODA.fluid.add("hot-air", "1h", subgroup, SODA.MATS.white.tint, {folders = "flui
 
 SODA.recipe.add("hot-air", nil, {}, nil, {{type = "fluid", name = "hot-air", amount = 2, temperature = 315}}, nil, 0.1)
 
-SODA.item.add("crushed-yellow-ore", "1b", "side-products", 100, {folders = "processing", name = "crushed-ore", tint = SODA.MATS.yellow.tint})
-SODA.recipe.add("crushed-yellow-ore", "crushing", "yellow-ore", 1, "crushed-yellow-ore", 2, 0.8)
 SODA.fluid.add(
     "yellow-gas", "1i", subgroup, SODA.MATS.yellow.tint, {folders = "fluid", name = "steam", tint = SODA.MATS.yellow.tint, vanilla = true}, false,
     {max_temperature = 315, gas_temperature = 0, heat_capacity = 0.25 .. "kJ"}

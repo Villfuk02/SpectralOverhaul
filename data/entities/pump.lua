@@ -16,3 +16,9 @@ data.raw["assembling-machine"]["electric-offshore-pump"].energy_source.drain = "
 
 -- MAKE WATER BURNABLE
 data.raw.fluid.water.fuel_value = "2kJ"
+
+-- RECIPES
+SODA.recipe.add_from_prefabs({"structure"}, {"milling", "cold-rolling", "hot-rolling"}, {{SODA.RIP.plate_4s, 1}}, "pipe", 2, 0.5)
+SODA.recipe.add_from_prefabs({"structure"}, "assembling", {{SODA.RIP.plate_4s, 2}, {"pipe", 10}}, "pipe-to-ground", 2, 1)
+SODA.recipe.add_from_prefabs({"mechanisms"}, "assembling", {{"simple-motor", 4}, {SODA.RIP.mechanism_0_4m_1s, 2}, {"pipe", 4}}, "electric-offshore-pump", 1, 1)
+

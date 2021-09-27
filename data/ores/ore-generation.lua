@@ -41,5 +41,12 @@ return function(name)
     local divisor = 512 * type_divisor[SODA.MATS[name].type]
     local match = SODA.mat.types[SODA.MATS[name].type][name] - 1
     autoplace.probability_expression = noise.equals(noise.fmod(noise.floor(noise.var("map_seed") / divisor), 3), match)
+    -- HACK TO DISABLE BLUE
+    if name == "blue" then
+        autoplace.probability_expression = noise.to_noise_expression(0)
+    elseif name == "white" then
+        autoplace.probability_expression = noise.to_noise_expression(1 - data.raw.resource.lime.autoplace.probability_expression)
+    end
+
     return autoplace
 end

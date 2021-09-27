@@ -28,25 +28,24 @@ In the late game, there would be a way to acquire one or even both remaining kin
 ## **TODO**
 
 **pneumatic pipes**  
-**recipes**  
-**tech**  
-**finish up game start**  
+**finish up early game**  
 lock settings  
-tech auto-prereqs  
 reorder stuff  
 hide ugly items  
-hide remnant techs  
 heat generator via composite entities  
 thermoelectric generator via composite entities  
 change default keybinds  
+make proper lang system  
+rebalance power generation  
   
 ### **later**
 
 **MID GAME**  
 **LATE GAME**  
 **combat**  
-descriptions  
-modulability  
+descriptions (techs and items)  
+rethink tech ?  
+redo icons  
 
 ### **polish**
 
@@ -57,7 +56,8 @@ remove relic techs (data.remove.recipes)
 hide unused items  
 colorblindness  
 space exploration  
-errors ("smelting")
+errors ("smelting")  
+consistent letter size in lang  
 
 ## I can't give credit
 

@@ -1,3 +1,4 @@
+-- require('__debugadapter__/debugadapter.lua')
 -- INIT SODA
 require "data.soda.soda"
 -- REMOVE VANILLA STUFF

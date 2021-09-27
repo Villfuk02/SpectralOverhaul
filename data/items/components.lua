@@ -3,12 +3,14 @@ local group_name = "intermediate-products"
 -- START
 SODA.item.add_subgroup("gravel", group_name, "a")
 
+SODA.recipe.colored_list["gravel"] = {}
 for _, m in pairs(SODA.mat.types.structure.list) do
     for _, n in pairs(SODA.mat.types.electronics.list) do
         SODA.recipe.add(
-            "gravel-from-" .. m .. "-and-" .. n, "dry-mixing", {{m .. "-ore", 2}, {n .. "-ore", 2}}, nil, "stone", 4, 2, "gravel", "1" .. SODA.MATS[m].order .. SODA.MATS[n].order,
+            "gravel-from-" .. m .. "-and-" .. n, "dry-mixing", {{m .. "-ore", 1}, {n .. "-ore", 1}}, nil, "stone", 2, 1, "gravel", "1" .. SODA.MATS[m].order .. SODA.MATS[n].order,
             SODA.color.lerp(SODA.MATS[m].tint, SODA.MATS[n].tint, 0.5), true, SODA.icon.icons_2_to_1(m .. "-ore", n .. "-ore", "stone"), {allow_as_intermediate = false}
         )
+        SODA.recipe.colored_list["gravel"][m .. "-" .. n] = "gravel-from-" .. m .. "-and-" .. n
     end
 end
 SODA.recipe.add("stone-brick", "smelting", "stone", 2, "stone-brick", 1, 12)
@@ -78,8 +80,8 @@ for_all(
 )
 SODA.recipe.add_for_each_str_mat("blue", "gaskets", {"milling-1", "pressing-1", "casting-1"}, {{"blue-plate", 1}}, 4, 2, "f", mechanism_subgroup, 200) -- 1m
 -- white
-SODA.recipe.add_for_each_str_mat("white", "tube", {"milling", "cold-rolling", "hot-rolling"}, {{"white-plate", 1}}, 4, 2, "g", mechanism_subgroup, 200) -- 1m
-SODA.recipe.add_for_each_str_mat("white", "spring", {"milling-1", "cold-rolling-1", "hot-rolling-1"}, {{"white-tube", 1}}, 1, 2, "h", mechanism_subgroup, 200) -- 2m
+SODA.recipe.add_for_each_str_mat("white", "tubes", {"milling", "cold-rolling", "hot-rolling"}, {{"white-plate", 1}}, 4, 2, "g", mechanism_subgroup, 200) -- 1m
+SODA.recipe.add_for_each_str_mat("white", "spring", {"milling-1", "cold-rolling-1", "hot-rolling-1"}, {{"white-tubes", 1}}, 1, 2, "h", mechanism_subgroup, 200) -- 2m
 
 -- electronic specials
 for_all(
@@ -99,8 +101,8 @@ SODA.recipe.add_for_each_str_mat("purple", "sensor", "assembling-1", {{"purple-p
 SODA.recipe.add_for_each_str_mat("orange", "electronic-components", "assembling-1", {{"orange-cable", 3}, {"MAT-rod", 1}}, 4, 2.5, "e", electronic_subgroup, 200) -- 0.75e + 0.5s
 SODA.recipe.add_for_each_mech_mat("orange", "circuit", "assembling-1", {{"orange-electronic-components", 8}, {"orange-foil", 2}, {"MAT-plate", 1}}, 4, 16, "f", electronic_subgroup, 100) -- 2e + 1m + 1s
 -- red
-SODA.recipe.add_for_each_str_mat("red", "spring", {"milling", "cold-rolling", "hot-rolling"}, {{"red-cable", 2}}, 1, 1, "g", electronic_subgroup, 200) -- 2e
-SODA.recipe.add_for_each_str_mat("red", "magnet", "assembling-1", {{"red-spring", 1}, {"MAT-rod", 1}}, 1, 2, "h", electronic_subgroup, 100) -- 2e + 2s
+SODA.recipe.add_for_each_str_mat("red", "coil", {"milling", "cold-rolling", "hot-rolling"}, {{"red-cable", 2}}, 1, 1, "g", electronic_subgroup, 200) -- 2e
+SODA.recipe.add_for_each_str_mat("red", "magnet", "assembling-1", {{"red-coil", 1}, {"MAT-rod", 1}}, 1, 2, "h", electronic_subgroup, 100) -- 2e + 2s
 SODA.recipe.add_for_each_mech_mat("red", "memory", "assembling-1", {{"red-magnet", 4}, {"MAT-ingot", 1}, {"red-cable", 8}}, 8, 32, "i", electronic_subgroup, 100) -- 2e + 1m + 1s
 
 -- MOTOR
@@ -108,3 +110,9 @@ local simple_subgroup = "simple-intermediates"
 SODA.item.add_subgroup(simple_subgroup, group_name, "f")
 SODA.item.add("simple-motor", "0", simple_subgroup, 100, {folders = "intermediates"})
 SODA.recipe.add_from_prefabs({"mechanisms", "electronics"}, "assembling", {{SODA.RIP.cable_1e, 4}, {SODA.RIP.mechanism_0_4m_1s, 1}}, "simple-motor", 2, 4) -- 2e + 2m + 0.5s
+
+-- CERAMIC
+SODA.item.add("ceramic-mix", "1", simple_subgroup, 100, {folders = "intermediates"})
+SODA.recipe.add_from_prefabs({"fuel", "structure"}, "dry-mixing", {{"stone", 2}, {SODA.RIP.crushed_ore_1f, 2}, {SODA.RIP.ore_2s, 1}}, "ceramic-mix", 2, 2) -- 1f + 2s + 1e
+SODA.item.add("ceramic-sheet", "2", simple_subgroup, 100, {folders = "intermediates"})
+SODA.recipe.add("ceramic-sheet", "smelting", "ceramic-mix", 1, "ceramic-sheet", 1, 24)

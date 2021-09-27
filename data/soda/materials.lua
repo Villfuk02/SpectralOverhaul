@@ -18,7 +18,7 @@ SODA.MATS.azure = {name = "allasite", type = "structure", order = "b1", map_colo
 SODA.MATS.silver = {name = "starium", type = "structure", order = "b2", map_color = {130, 135, 140}, tint = {160, 165, 170}, short = "S"}
 SODA.MATS.pink = {name = "ionite", type = "structure", order = "b3", map_color = {240, 120, 200}, tint = {255, 135, 215}, short = "I"}
 SODA.MATS.lime = {name = "lamnium", type = "mechanisms", order = "c1", map_color = {130, 225, 30}, tint = {160, 255, 60}, short = "L"}
-SODA.MATS.blue = {name = "catarite", type = "mechanisms", order = "c2", map_color = {60, 30, 225}, tint = {90, 60, 255}, short = "C"}
+SODA.MATS.blue = {name = "catarite", type = "mechanisms", order = "c2", map_color = {40, 30, 225}, tint = {60, 60, 255}, short = "C"}
 SODA.MATS.white = {name = "treptium", type = "mechanisms", order = "c3", map_color = {225, 225, 225}, tint = {255, 255, 255}, short = "T"}
 SODA.MATS.purple = {name = "phabium", type = "electronics", order = "d1", map_color = {170, 30, 225}, tint = {200, 60, 255}, short = "P"}
 SODA.MATS.orange = {name = "otheium", type = "electronics", order = "d2", map_color = {225, 110, 30}, tint = {255, 140, 60}, short = "O"}
@@ -29,5 +29,32 @@ function SODA.mat.by_short(short)
         if value.short == short then
             return value
         end
+    end
+end
+
+function SODA.mat.for_all_combinations(materials, func)
+    local combinations = {{}}
+    if materials ~= nil then
+        for i, value in pairs(materials) do
+            local new_combinations = {}
+            if type(value) == "string" then
+                if value == "metals" then
+                    value = SODA.mat.metals
+                else
+                    value = SODA.mat.types[value].list
+                end
+            end
+            for _, v in pairs(value) do
+                for _, c in pairs(combinations) do
+                    local nc = table.deepcopy(c)
+                    table.insert(nc, v)
+                    table.insert(new_combinations, nc)
+                end
+            end
+            combinations = new_combinations
+        end
+    end
+    for _, c in pairs(combinations) do
+        func(c, table.concat(c, "-") .. "-")
     end
 end

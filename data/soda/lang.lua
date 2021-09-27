@@ -1,6 +1,6 @@
 SODA.lang = {}
 
-local capture = {"black-ore", "yellow-ore", "green-ore", "stone-analysis", "stone-sample", "lathe-mill", "purple-sensor", "red-spring", "red-memory"}
+local capture = {"black-ore", "yellow-ore", "green-ore", "stone-analysis", "stone-sample", "lathe-mill", "purple-sensor", "red-memory", "science-pack", "steam-engine"}
 local capture_right = {"ingot"}
 local capture_left = {"circuit"}
 for _, value in pairs(capture_left) do
@@ -43,7 +43,11 @@ function SODA.lang.cut_up(name)
         if #result > 1 then
             table.insert(result, " ")
         end
-        table.insert(result, {"token." .. selected})
+        if #selected > 1 then
+            table.insert(result, {"token." .. selected})
+        else
+            table.insert(result, selected)
+        end
     end
     return result
 end

@@ -7,6 +7,7 @@ data.raw["mining-drill"]["burner-mining-drill"].mining_speed = SODA.constants.pr
 data.raw["mining-drill"]["burner-mining-drill"].energy_source.emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[1]
 data.raw.item["burner-mining-drill"].subgroup = "mining-drills"
 data.raw.item["burner-mining-drill"].order = "a"
+SODA.recipe.add_from_prefabs({"structure", "mechanisms"}, "assembling", {{"stone-furnace", 1}, {SODA.RIP.rod_2s, 2}, {SODA.RIP.mechanism_0_4m_1s, 1}}, "burner-mining-drill", 1, 1)
 
 -- OTHER
 local function create_miner(name, order, width, height, mining_size, max_health, power, speed, yield, energy_source, module_slots)
@@ -34,10 +35,12 @@ create_miner(
     "deep-miner", "ba", 4, 4, 4, 400, SODA.constants.processing.power_per_miner[2] * 3 / 2, SODA.constants.processing.mining_speeds[2], 125,
     {type = "electric", emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[2] * 3 / 2, usage_priority = "secondary-input"}, 1
 )
+SODA.recipe.add_from_prefabs({{"azure"}, "mechanisms"}, "assembling", {{"simple-motor", 2}, {SODA.RIP.mechanism_0_4m_1s, 2}, {SODA.RIP.rod_2s, 4}}, "deep-miner", 1, 1)
 create_miner(
     "surface-miner", "bb", 4, 4, 6, 400, SODA.constants.processing.power_per_miner[2] * 3 / 2, SODA.constants.processing.mining_speeds[2] * 3 / 2, 100,
     {type = "electric", emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[2] * 3 / 2, usage_priority = "secondary-input"}, 1
 )
+SODA.recipe.add_from_prefabs({{"silver"}, "mechanisms"}, "assembling", {{"simple-motor", 2}, {SODA.RIP.mechanism_0_4m_1s, 2}, {SODA.RIP.plate_4s, 2}}, "surface-miner", 1, 1)
 create_miner(
     "dissolving-miner", "bc", 3, 3, 5, 300, SODA.constants.processing.power_per_miner[2], SODA.constants.processing.mining_speeds[2] * 3 / 5, 125, {
         type = "fluid",
@@ -56,6 +59,7 @@ create_miner(
         emissions_per_minute = SODA.constants.processing.pollution_per_miner_per_minute[2] / 2,
     }, 1
 )
+SODA.recipe.add_from_prefabs({{"pink"}, "mechanisms"}, "assembling", {{"simple-motor", 2}, {SODA.RIP.mechanism_0_4m_1s, 2}, {"pipe", 4}}, "dissolving-miner", 1, 1)
 
 create_miner(
     "big-deep-miner", "ca", 6, 6, 6, 600, SODA.constants.processing.power_per_miner[3] * 3 / 2, SODA.constants.processing.mining_speeds[3], 125,

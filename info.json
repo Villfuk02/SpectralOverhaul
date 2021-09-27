@@ -1,7 +1,7 @@
 {
     "name": "SpectralOverhaul",
     "version": "0.1.0",
-    "title": "Spectral Overhaul",
+    "title": "Spectral Overhaul DEMO (alpha)",
     "author": "Villfuk02",
     "dependencies": [
         "base >= 1.1.39",
